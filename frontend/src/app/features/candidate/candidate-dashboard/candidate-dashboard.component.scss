@@ -1,0 +1,60 @@
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.link-more {
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #2563eb;
+  &:hover { text-decoration: underline; }
+}
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  .job-title { font-size: 0.9375rem; font-weight: 700; display: block; }
+  .app-date { font-size: 0.75rem; color: var(--muted); }
+}
+
+.interviews-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.interview-mini-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+
+  .time-tag { font-size: 0.75rem; font-weight: 800; color: #2563eb; margin-bottom: 4px; }
+  .mini-title { font-size: 0.9375rem; font-weight: 700; margin: 0 0 4px; }
+  .mini-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+}
+
+.btn-join-meet {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: #2563eb;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}

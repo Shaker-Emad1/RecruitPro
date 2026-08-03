@@ -1,0 +1,72 @@
+<div class="page-hero text-center">
+  <div class="container">
+    <span class="eyebrow">Join Our Team</span>
+    <h1 class="page-title">Work On Products That Shape The Future Of Hiring</h1>
+    <p class="page-lead">
+      Discover an empowering engineering culture, world-class benefits, and direct impact on high-growth technology solutions.
+    </p>
+  </div>
+</div>
+
+<!-- Benefits -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="eyebrow">Perks & Benefits</span>
+      <h2>Why You'll Love Working With Us</h2>
+    </div>
+
+    <div class="benefits-grid">
+      @for (b of benefits; track b.title) {
+        <div class="benefit-card">
+          <div class="icon">🌟</div>
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Culture -->
+<section class="section bg-surface">
+  <div class="container">
+    <div class="culture-wrap">
+      <div class="culture-text">
+        <span class="eyebrow">Engineering Culture</span>
+        <h2>High Autonomy, Clean Code, Clear Impact</h2>
+        <p>
+          We foster an inclusive culture where ownership, architectural rigor, and open communication thrive. Our engineers pair-program, write clean maintainable code, and iterate rapidly.
+        </p>
+        <ul class="culture-list">
+          <li>✓ Modern Tech Stack (C# 13, ASP.NET Core 10, Angular 20)</li>
+          <li>✓ Asynchronous first communication</li>
+          <li>✓ Direct involvement in system design and architecture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Departments -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="eyebrow">Explore Departments</span>
+      <h2>Find Your Next Role</h2>
+    </div>
+
+    <div class="departments-grid">
+      @for (dept of departments; track dept.name) {
+        <div class="dept-card">
+          <div class="dept-header">
+            <h3>{{ dept.name }}</h3>
+            <span class="badge-dept">{{ dept.count }}</span>
+          </div>
+          <p>{{ dept.desc }}</p>
+          <a routerLink="/jobs" class="btn-dept-link">View Department Jobs →</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

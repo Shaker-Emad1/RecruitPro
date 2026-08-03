@@ -1,0 +1,123 @@
+<app-page-header
+  title="Application Management"
+  eyebrow="HR Portal"
+  subtitle="Manage applicant pipelines, review candidates, and transition hiring lifecycle stages."
+>
+  <div class="d-flex gap-2">
+    <button class="btn-ui-outline" [class.active-mode]="viewMode === 'pipeline'" (click)="viewMode = 'pipeline'">
+      📊 Pipeline View
+    </button>
+    <button class="btn-ui-outline" [class.active-mode]="viewMode === 'table'" (click)="viewMode = 'table'">
+      📋 Table View
+    </button>
+  </div>
+</app-page-header>
+
+<!-- Filter Toolbar -->
+<div class="filter-toolbar mb-4">
+  <select [(ngModel)]="selectedStatus" class="form-control-ui" style="max-width: 220px;">
+    <option value="">All Application Statuses</option>
+    <option value="Applied">Applied</option>
+    <option value="Screening">Screening</option>
+    <option value="Shortlisted">Shortlisted</option>
+    <option value="Interview">Interview</option>
+    <option value="Offered">Offered</option>
+    <option value="Hired">Hired</option>
+    <option value="Rejected">Rejected</option>
+  </select>
+</div>
+
+@if (loading()) {
+  <p class="text-muted">Loading candidate application records...</p>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else {
+
+  <!-- PIPELINE BOARD VIEW -->
+  @if (viewMode === 'pipeline') {
+    <div class="pipeline-board">
+      @for (stage of stages; track stage) {
+        <div class="pipeline-column">
+          <div class="column-header">
+            <span class="column-title">{{ stage }}</span>
+            <span class="column-count">{{ getApplicationsByStage(stage).length }}</span>
+          </div>
+
+          <div class="column-cards">
+            @for (app of getApplicationsByStage(stage); track app.id) {
+              <div class="card-ui pipeline-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h4 class="cand-name">Candidate #{{ app.candidateId.substring(0, 8) }}</h4>
+                  <app-badge [text]="app.status" [colorClass]="statusClass(app.status)"></app-badge>
+                </div>
+                <p class="job-ref">Applied for Job #{{ app.jobId.substring(0, 8) }}</p>
+                <div class="card-meta">
+                  <span>📅 {{ app.createdAt | date:'shortDate' }}</span>
+                </div>
+
+                <!-- Stage Move Actions -->
+                <div class="stage-actions mt-3 pt-2 border-top">
+                  @if (app.status === 'Applied') {
+                    <button class="btn-action btn-screen" (click)="updateStatus(app, 'Screening')">Move to Screening</button>
+                  } @else if (app.status === 'Screening') {
+                    <button class="btn-action btn-interview" (click)="updateStatus(app, 'Interview')">Schedule Interview</button>
+                  } @else if (app.status === 'Interview' || app.status === 'Shortlisted') {
+                    <button class="btn-action btn-offer" (click)="updateStatus(app, 'Offered')">Extend Offer</button>
+                  } @else if (app.status === 'Offered') {
+                    <button class="btn-action btn-hire" (click)="updateStatus(app, 'Hired')">Mark as Hired</button>
+                  }
+
+                  @if (app.status !== 'Hired' && app.status !== 'Rejected') {
+                    <button class="btn-action btn-reject ms-1" (click)="updateStatus(app, 'Rejected')">Reject</button>
+                  }
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-column-state">No candidates</div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- TABLE VIEW -->
+  @if (viewMode === 'table') {
+    <div class="card-ui p-0 overflow-hidden">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Candidate ID</th>
+            <th>Job ID</th>
+            <th>Submitted Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (app of getFilteredApplications(); track app.id) {
+            <tr>
+              <td class="fw-bold">#{{ app.candidateId.substring(0, 8) }}</td>
+              <td>#{{ app.jobId.substring(0, 8) }}</td>
+              <td>{{ app.createdAt | date:'mediumDate' }}</td>
+              <td><app-badge [text]="app.status" [colorClass]="statusClass(app.status)"></app-badge></td>
+              <td>
+                <div class="d-flex gap-1">
+                  <button class="btn-sm-action" (click)="updateStatus(app, 'Screening')">Screen</button>
+                  <button class="btn-sm-action" (click)="updateStatus(app, 'Interview')">Interview</button>
+                  <button class="btn-sm-action" (click)="updateStatus(app, 'Offered')">Offer</button>
+                  <button class="btn-sm-action text-danger" (click)="updateStatus(app, 'Rejected')">Reject</button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="text-center py-4 text-muted">No applications matching criteria.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+}

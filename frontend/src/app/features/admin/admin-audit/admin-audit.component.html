@@ -1,0 +1,53 @@
+<app-page-header
+  title="System Audit Logs"
+  eyebrow="Admin Portal"
+  subtitle="Trace security actions, module operations, IP addresses, and administrator activity."
+></app-page-header>
+
+<div class="filter-bar mb-4 d-flex gap-3">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search audit action or user email..."
+    class="form-control-ui flex-1"
+  />
+
+  <select [(ngModel)]="selectedModule" class="form-control-ui" style="max-width: 220px;">
+    <option value="">All Modules</option>
+    <option value="Users">Users</option>
+    <option value="Jobs">Jobs</option>
+    <option value="Interviews">Interviews</option>
+    <option value="Settings">Settings</option>
+  </select>
+</div>
+
+<div class="card-ui p-0 overflow-hidden">
+  <table class="table-ui">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>User</th>
+        <th>Module</th>
+        <th>Action</th>
+        <th>IP Address</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (l of getFilteredLogs(); track l.id) {
+        <tr>
+          <td class="small-text">{{ l.timestamp | date:'medium' }}</td>
+          <td class="fw-bold">{{ l.userEmail }}</td>
+          <td><app-badge [text]="l.module" colorClass="badge-blue"></app-badge></td>
+          <td class="fw-bold text-primary">{{ l.action }}</td>
+          <td><code>{{ l.ipAddress }}</code></td>
+          <td class="small-text text-muted">{{ l.description }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center py-4 text-muted">No audit logs matching search query.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

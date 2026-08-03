@@ -1,0 +1,106 @@
+<app-page-header
+  title="Profile & Resume"
+  eyebrow="Candidate Portal"
+  subtitle="Manage your personal details, professional experience, and resume documents."
+></app-page-header>
+
+<div class="row g-4">
+  <!-- Resume Upload Card -->
+  <div class="col-lg-4">
+    <div class="card-ui">
+      <h3 class="card-title mb-2">Resume Document</h3>
+      <p class="small-muted mb-4">Supported formats: PDF, DOCX (Max 5MB)</p>
+
+      @if (resumeFileName()) {
+        <div class="resume-active-box mb-3">
+          <div class="resume-icon">📄</div>
+          <div class="resume-meta">
+            <span class="file-name">{{ resumeFileName() }}</span>
+            <span class="file-status">✓ Verified & Ready</span>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <label class="btn-ui-outline flex-1 text-center cursor-pointer">
+            Replace Resume
+            <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,.doc" class="d-none" />
+          </label>
+          <button class="btn-delete-resume" (click)="deleteResume()" title="Delete Resume">🗑️</button>
+        </div>
+      } @else {
+        <div class="resume-dropzone text-center p-4">
+          <div class="drop-icon">☁️</div>
+          <p class="fw-bold mb-1">Upload Resume Document</p>
+          <p class="small-muted mb-3">PDF or DOCX up to 5MB</p>
+          <label class="btn-ui-primary cursor-pointer">
+            Select File
+            <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,.doc" class="d-none" />
+          </label>
+        </div>
+      }
+
+      @if (uploading()) {
+        <p class="text-primary text-center mt-2 small">Uploading resume file...</p>
+      }
+
+      @if (resumeUploadError()) {
+        <div class="alert alert-danger mt-3 py-2 small mb-0">{{ resumeUploadError() }}</div>
+      }
+    </div>
+  </div>
+
+  <!-- Profile Form Card -->
+  <div class="col-lg-8">
+    <div class="card-ui">
+      <h3 class="card-title mb-4">Personal Details</h3>
+
+      <form [formGroup]="form" (ngSubmit)="saveProfile()" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label-ui">Full Name</label>
+          <input type="text" formControlName="fullName" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Phone Number</label>
+          <input type="text" formControlName="phone" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Location</label>
+          <input type="text" formControlName="location" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Years of Experience</label>
+          <input type="number" formControlName="yearsOfExperience" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Highest Education</label>
+          <input type="text" formControlName="education" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Certifications</label>
+          <input type="text" formControlName="certifications" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">LinkedIn Profile URL</label>
+          <input type="text" formControlName="linkedInUrl" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">GitHub Profile URL</label>
+          <input type="text" formControlName="gitHubUrl" class="form-control-ui" />
+        </div>
+
+        <div class="col-12 mt-4 text-end">
+          <button type="submit" class="btn-ui-primary" [disabled]="form.invalid || saving()">
+            {{ saving() ? 'Saving Profile...' : 'Save Profile Changes' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

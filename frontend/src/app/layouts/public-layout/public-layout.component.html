@@ -1,0 +1,93 @@
+<div class="public-shell">
+  <!-- Public Top Navigation Header -->
+  <header class="public-header">
+    <div class="container public-header__inner">
+      <a routerLink="/" class="brand-logo">
+        <span class="brand-logo__icon">⚡</span>
+        <span class="brand-logo__text">Recruit<strong>Pro</strong></span>
+      </a>
+
+      <button class="mobile-toggle" (click)="toggleMenu()" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <nav class="public-nav" [class.is-open]="isMenuOpen">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">Home</a>
+        <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">About</a>
+        <a routerLink="/careers" routerLinkActive="active" (click)="isMenuOpen = false">Careers</a>
+        <a routerLink="/jobs" routerLinkActive="active" (click)="isMenuOpen = false">Explore Jobs</a>
+        <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        @if (auth.isAuthenticated()) {
+          <a routerLink="/dashboard" class="btn-dashboard">Go to Portal →</a>
+        } @else {
+          <a routerLink="/login" class="btn-login">Sign In</a>
+          <a routerLink="/register" class="btn-register">Apply Now</a>
+        }
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Outlet -->
+  <main class="public-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo mb-3">
+            <span class="brand-logo__icon">⚡</span>
+            <span class="brand-logo__text">Recruit<strong>Pro</strong></span>
+          </div>
+          <p class="footer-desc">
+            Empowering top global organizations with next-generation recruitment intelligence, automated workflows, and candidate-centric experiences.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h6>Navigation</h6>
+          <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/about">About Us</a></li>
+            <li><a routerLink="/careers">Careers</a></li>
+            <li><a routerLink="/jobs">Browse Jobs</a></li>
+            <li><a routerLink="/contact">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h6>Solutions</h6>
+          <ul>
+            <li><a routerLink="/jobs">Executive Hiring</a></li>
+            <li><a routerLink="/jobs">Technical Assessment</a></li>
+            <li><a routerLink="/jobs">Global Sourcing</a></li>
+            <li><a routerLink="/jobs">Talent Pipelines</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h6>Stay Informed</h6>
+          <p class="footer-small">Subscribe to our quarterly HR intelligence dispatch.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Enter work email" class="newsletter-input" />
+            <button class="btn-subscribe">Join</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 RecruitPro Inc. All rights reserved.</p>
+        <div class="footer-links">
+          <a routerLink="/contact">Privacy Policy</a>
+          <a routerLink="/contact">Terms of Service</a>
+          <a routerLink="/contact">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

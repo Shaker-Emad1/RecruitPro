@@ -1,0 +1,57 @@
+.applications-list { display: flex; flex-direction: column; gap: 20px; }
+
+.app-card {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .app-job-title { font-size: 1.1rem; font-weight: 800; margin: 0 0 4px; }
+  .app-company { font-size: 0.8125rem; color: var(--muted); }
+}
+
+.pipeline-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 16px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+  }
+}
+
+.pipeline-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+
+  .step-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--surface-muted);
+    border: 2px solid var(--border-strong);
+  }
+
+  .step-label { font-size: 0.7rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+
+  &.completed {
+    .step-dot { background: #2563eb; border-color: #2563eb; }
+    .step-label { color: var(--foreground); }
+  }
+}
+
+.app-footer { font-size: 0.8125rem; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--border); }

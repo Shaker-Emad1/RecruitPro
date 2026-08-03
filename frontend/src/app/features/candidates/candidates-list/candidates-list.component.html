@@ -1,0 +1,63 @@
+<app-page-header
+  eyebrow="Talent Pipeline"
+  title="Candidate intelligence, organized for fast review"
+  description="Search the full pipeline, compare AI fit signals, and jump into candidate context without table fatigue."
+>
+  <input
+    type="search"
+    class="search-input"
+    placeholder="Search by name, email or skill..."
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="onSearch($event)"
+    aria-label="Search candidates"
+  />
+</app-page-header>
+
+@if (loading()) {
+  <div class="loading-state"><div class="spinner"></div><p>Loading candidates...</p></div>
+} @else if (error()) {
+  <div class="error-state">{{ error() }}</div>
+} @else {
+  <div class="candidates-grid">
+    @for (candidate of candidates(); track candidate.id) {
+      <a [routerLink]="['/candidates', candidate.id]" class="candidate-card">
+
+        <div class="candidate-card__top">
+          <div class="candidate-card__info">
+            <h2 class="candidate-name">{{ candidate.fullName }}</h2>
+            <p class="candidate-email">{{ candidate.email }}</p>
+            <p class="candidate-location">{{ candidate.location || 'Location not provided' }}</p>
+          </div>
+          <div class="ai-score">
+            <span class="ai-score__label">AI Score</span>
+            <span class="ai-score__value">{{ candidate.aiScore }}</span>
+          </div>
+        </div>
+
+        <div class="candidate-card__badges">
+          <app-badge [text]="candidate.status"         [colorClass]="badgeClass(candidate.status)" />
+          <app-badge [text]="candidate.classification" colorClass="badge-teal" />
+          <app-badge [text]="candidate.yearsOfExperience + ' years'" colorClass="badge-slate" />
+        </div>
+
+        @if (candidate.skills.length) {
+          <div class="candidate-card__skills">
+            @for (skill of candidate.skills.slice(0, 4); track skill.name) {
+              <span class="skill-chip">{{ skill.name }}</span>
+            }
+            @if (candidate.skills.length > 4) {
+              <span class="skill-chip skill-chip--more">+{{ candidate.skills.length - 4 }}</span>
+            }
+          </div>
+        }
+
+        <p class="candidate-card__summary">
+          {{ candidate.aiSummary || 'AI summary pending. Review profile details to trigger deeper candidate analysis.' }}
+        </p>
+
+      </a>
+    } @empty {
+      <div class="empty-state">No candidates found matching your search.</div>
+    }
+  </div>
+}

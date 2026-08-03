@@ -1,0 +1,69 @@
+<app-page-header
+  title="Roles & Permission Matrix"
+  eyebrow="Admin Portal"
+  subtitle="Configure granular Create, Read, Update, and Delete permissions across modules."
+>
+  <button class="btn-ui-primary" (click)="savePermissions()">
+    Save Matrix Changes
+  </button>
+</app-page-header>
+
+<div class="row g-4">
+  <!-- Role Selector -->
+  <div class="col-md-3">
+    <div class="card-ui">
+      <h3 class="card-title mb-3">System Roles</h3>
+      <div class="role-selector-list">
+        @for (r of ['Admin', 'HRManager', 'Recruiter', 'Candidate']; track r) {
+          <button
+            class="role-btn"
+            [class.active-role]="selectedRole() === r"
+            (click)="selectedRole.set(r)"
+          >
+            <span>{{ r }}</span>
+            <app-badge [text]="r === 'Admin' ? 'Full Access' : 'Custom'" colorClass="badge-slate"></app-badge>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Permission Matrix Table -->
+  <div class="col-md-9">
+    <div class="card-ui p-0 overflow-hidden">
+      <div class="p-3 border-bottom bg-surface-muted d-flex justify-content-between align-items-center">
+        <h3 class="card-title m-0">Permissions for Role: <strong>{{ selectedRole() }}</strong></h3>
+      </div>
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Module Name</th>
+            <th class="text-center">Create</th>
+            <th class="text-center">Read</th>
+            <th class="text-center">Update</th>
+            <th class="text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of permissions(); track p.module) {
+            <tr>
+              <td class="fw-bold">{{ p.module }}</td>
+              <td class="text-center">
+                <input type="checkbox" [(ngModel)]="p.create" class="perm-checkbox" />
+              </td>
+              <td class="text-center">
+                <input type="checkbox" [(ngModel)]="p.read" class="perm-checkbox" />
+              </td>
+              <td class="text-center">
+                <input type="checkbox" [(ngModel)]="p.update" class="perm-checkbox" />
+              </td>
+              <td class="text-center">
+                <input type="checkbox" [(ngModel)]="p.delete" class="perm-checkbox" />
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

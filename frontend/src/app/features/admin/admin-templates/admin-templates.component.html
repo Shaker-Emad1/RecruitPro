@@ -1,0 +1,51 @@
+<app-page-header
+  title="Email Notification Templates"
+  eyebrow="Admin Portal"
+  subtitle="Customize template subjects and dynamic body content for candidate notification events."
+></app-page-header>
+
+<div class="row g-4">
+  <!-- Template List -->
+  <div class="col-md-4">
+    <div class="card-ui">
+      <h3 class="card-title mb-3">Templates</h3>
+      <div class="tpl-list">
+        @for (t of templates(); track t.id) {
+          <button
+            class="tpl-btn"
+            [class.active-tpl]="selectedTemplate().id === t.id"
+            (click)="selectTemplate(t)"
+          >
+            <span>✉️ {{ t.name }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Editor -->
+  <div class="col-md-8">
+    <div class="card-ui">
+      <h3 class="card-title mb-1">Editing: {{ selectedTemplate().name }}</h3>
+      <p class="small-muted mb-4">Available merge tags: <code>{{'{{CandidateName}}'}}</code>, <code>{{'{{JobTitle}}'}}</code>, <code>{{'{{MeetingLink}}'}}</code></p>
+
+      <form [formGroup]="form" (ngSubmit)="saveTemplate()" class="d-flex flex-column gap-3">
+        <div>
+          <label class="form-label-ui">Email Subject</label>
+          <input type="text" formControlName="subject" class="form-control-ui" />
+        </div>
+
+        <div>
+          <label class="form-label-ui">Email Body Template</label>
+          <textarea formControlName="body" rows="10" class="form-control-ui font-monospace"></textarea>
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn-ui-primary" [disabled]="form.invalid || saving()">
+            {{ saving() ? 'Saving Template...' : 'Save Template' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

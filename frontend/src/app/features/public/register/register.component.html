@@ -1,0 +1,60 @@
+<div class="register-page">
+  <div class="register-card">
+
+    <div class="register-card__hero">
+      <span class="hero-eyebrow">Candidate Access</span>
+      <h1 class="hero-title">Start Your Career Journey With RecruitPro</h1>
+      <p class="hero-desc">
+        Create your candidate profile, upload your resume, track job application statuses, and interview directly with engineering managers.
+      </p>
+      <ul class="hero-features">
+        <li>🚀 Seamless 1-click application tracking</li>
+        <li>📁 Secure PDF/DOCX resume file management</li>
+        <li>📅 Direct Google Meet interview scheduling</li>
+      </ul>
+    </div>
+
+    <div class="register-card__form">
+      <p class="form-eyebrow">Create Profile</p>
+      <h2 class="form-title">Candidate Registration</h2>
+      <p class="form-subtitle">Fill in your information to start applying for open roles.</p>
+
+      @if (error()) {
+        <div class="alert alert-danger" role="alert">{{ error() }}</div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
+        <div class="row g-3">
+          <div class="col-6">
+            <label class="field-label">First Name</label>
+            <input type="text" formControlName="firstName" class="field-input" placeholder="Sarah" />
+          </div>
+
+          <div class="col-6">
+            <label class="field-label">Last Name</label>
+            <input type="text" formControlName="lastName" class="field-input" placeholder="Connor" />
+          </div>
+        </div>
+
+        <div class="field mt-3">
+          <label class="field-label">Work Email</label>
+          <input type="email" formControlName="email" class="field-input" placeholder="sarah@example.com" />
+        </div>
+
+        <div class="field mt-3">
+          <label class="field-label">Password</label>
+          <input type="password" formControlName="password" class="field-input" placeholder="••••••••" />
+        </div>
+
+        <button type="submit" class="btn-submit mt-4" [disabled]="form.invalid || submitting()">
+          {{ submitting() ? 'Creating Profile...' : 'Register Account →' }}
+        </button>
+
+        <p class="login-link text-center mt-3">
+          Already have an account? <a routerLink="/login">Sign In here</a>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</div>

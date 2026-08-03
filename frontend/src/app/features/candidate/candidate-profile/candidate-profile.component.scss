@@ -1,0 +1,34 @@
+.card-title { font-size: 1.15rem; font-weight: 800; }
+.small-muted { font-size: 0.8125rem; color: var(--muted); }
+.form-label-ui { font-size: 0.8125rem; font-weight: 700; color: var(--muted-strong); margin-bottom: 4px; display: block; }
+
+.resume-active-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: var(--radius-md);
+
+  .resume-icon { font-size: 1.75rem; }
+  .file-name { font-size: 0.875rem; font-weight: 700; display: block; }
+  .file-status { font-size: 0.75rem; color: #0f766e; font-weight: 600; }
+}
+
+.btn-delete-resume {
+  background: var(--danger-bg);
+  border: 1px solid rgba(185,28,28,0.2);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.resume-dropzone {
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  .drop-icon { font-size: 2.25rem; margin-bottom: 8px; }
+}
+
+.cursor-pointer { cursor: pointer; }

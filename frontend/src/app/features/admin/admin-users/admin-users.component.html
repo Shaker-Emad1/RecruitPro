@@ -1,0 +1,99 @@
+<app-page-header
+  title="User Management"
+  eyebrow="Admin Portal"
+  subtitle="Create, configure roles, activate/deactivate, and manage system user access."
+>
+  <button class="btn-ui-primary" (click)="showCreateModal.set(true)">
+    + Add System User
+  </button>
+</app-page-header>
+
+<!-- Create User Modal -->
+@if (showCreateModal()) {
+  <div class="modal-backdrop">
+    <div class="card-ui modal-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="card-title">Create System User</h3>
+        <button class="btn-close-modal" (click)="showCreateModal.set(false)">✕</button>
+      </div>
+
+      <form [formGroup]="userForm" (ngSubmit)="createUser()" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label-ui">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Work Email</label>
+          <input type="email" formControlName="email" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Assigned Role</label>
+          <select formControlName="role" class="form-control-ui">
+            <option value="Admin">Admin</option>
+            <option value="HRManager">HR Manager</option>
+            <option value="Recruiter">Recruiter</option>
+            <option value="Candidate">Candidate</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-ui">Initial Temporary Password</label>
+          <input type="password" formControlName="password" class="form-control-ui" />
+        </div>
+
+        <div class="col-12 text-end mt-4">
+          <button type="button" class="btn-ui-outline me-2" (click)="showCreateModal.set(false)">Cancel</button>
+          <button type="submit" class="btn-ui-primary" [disabled]="userForm.invalid || submitting()">
+            {{ submitting() ? 'Creating...' : 'Create User' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<div class="card-ui p-0 overflow-hidden">
+  <table class="table-ui">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email Address</th>
+        <th>Assigned Role</th>
+        <th>Status</th>
+        <th>Created Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (u of users(); track u.id) {
+        <tr>
+          <td class="fw-bold">{{ u.firstName }} {{ u.lastName }}</td>
+          <td>{{ u.email }}</td>
+          <td>
+            <app-badge [text]="u.role" colorClass="badge-blue"></app-badge>
+          </td>
+          <td>
+            <app-badge [text]="u.isActive ? 'Active' : 'Inactive'" [colorClass]="u.isActive ? 'badge-green' : 'badge-red'"></app-badge>
+          </td>
+          <td>{{ u.createdAt | date:'mediumDate' }}</td>
+          <td>
+            <div class="d-flex gap-1">
+              <button class="btn-sm-action" (click)="toggleActive(u)">
+                {{ u.isActive ? 'Deactivate' : 'Activate' }}
+              </button>
+              <button class="btn-sm-action" (click)="resetPassword(u)">Reset Password</button>
+              <button class="btn-sm-action text-danger" (click)="deleteUser(u.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

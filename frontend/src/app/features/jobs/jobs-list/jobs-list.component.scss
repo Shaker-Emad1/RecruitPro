@@ -1,0 +1,59 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: var(--radius-lg);
+
+  .card-title { font-size: 1.25rem; font-weight: 800; margin: 0; }
+  .btn-close-modal { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--muted); }
+}
+
+.form-label-ui { font-size: 0.8125rem; font-weight: 700; color: var(--muted-strong); margin-bottom: 4px; display: block; }
+
+.job-item-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.job-dept { font-size: 0.75rem; font-weight: 800; color: #2563eb; text-transform: uppercase; }
+.job-title-card { font-size: 1.1rem; font-weight: 800; margin: 4px 0; }
+.job-location { font-size: 0.8125rem; color: var(--muted); margin-bottom: 12px; }
+.skill-tag { font-size: 0.75rem; background: var(--surface-muted); padding: 4px 8px; border-radius: 6px; color: var(--muted-strong); }
+.job-salary { font-size: 0.84rem; font-weight: 800; }
+
+.btn-sm-link {
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #2563eb;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.btn-sm-del {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--danger);
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--danger-bg);
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,43 @@
+@if (loading()) {
+  <div class="loading-state"><div class="spinner"></div><p>Loading job...</p></div>
+} @else if (error() || !job()) {
+  <div class="error-state">{{ error() || 'Job not found.' }}</div>
+} @else {
+  <app-page-header
+    eyebrow="Job Detail"
+    [title]="job()!.title"
+    [description]="job()!.department + ' · ' + job()!.location"
+  >
+    <a routerLink="/jobs" class="btn-back">← Back to jobs</a>
+    <app-badge [text]="job()!.status" colorClass="badge-green" />
+  </app-page-header>
+
+  <div class="job-detail-grid">
+    <article class="card">
+      <h2 class="card-title">Job Description</h2>
+      <p class="job-body">{{ job()!.description }}</p>
+
+      <h2 class="card-title mt">Requirements</h2>
+      <p class="job-body">{{ job()!.requirements }}</p>
+
+      @if (job()!.requiredSkills) {
+        <h2 class="card-title mt">Required Skills</h2>
+        <p class="job-body">{{ job()!.requiredSkills }}</p>
+      }
+    </article>
+
+    <article class="card">
+      <h2 class="card-title">Overview</h2>
+      <dl class="info-grid">
+        <div class="info-item"><dt>Department</dt><dd>{{ job()!.department }}</dd></div>
+        <div class="info-item"><dt>Location</dt><dd>{{ job()!.location }}</dd></div>
+        <div class="info-item"><dt>Min Experience</dt><dd>{{ job()!.minimumExperience }}+ years</dd></div>
+        <div class="info-item"><dt>Applications</dt><dd>{{ job()!.applicationCount }}</dd></div>
+        <div class="info-item">
+          <dt>Salary Range</dt>
+          <dd>${{ job()!.salaryMin.toLocaleString() }} – ${{ job()!.salaryMax.toLocaleString() }}</dd>
+        </div>
+      </dl>
+    </article>
+  </div>
+}

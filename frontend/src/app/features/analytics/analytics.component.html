@@ -1,0 +1,180 @@
+<app-page-header
+  title="Analytics & Reporting"
+  eyebrow="Executive Intelligence"
+  subtitle="Real-time recruitment metrics, hiring funnel analysis, and workforce performance reporting."
+>
+  <button class="btn-ui-primary" (click)="exportCSV()">
+    ⬇️ Export CSV Report
+  </button>
+</app-page-header>
+
+@if (loading()) {
+  <div class="loading-state">
+    <p class="text-muted">Loading analytics data from API...</p>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (analytics(); as data) {
+
+  <!-- ── KPI Executive Summary Row ───────────────────────────────────── -->
+  <section class="section-block mb-4">
+    <h2 class="section-title mb-3">📊 Executive Summary</h2>
+    <div class="row g-3">
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Total Jobs" [value]="data.totalJobs"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Open Positions" [value]="data.openJobs"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Total Applications" [value]="data.totalApplications"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Total Interviews" [value]="data.totalInterviews"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Hired Candidates" [value]="data.hiredCandidates"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Rejected Candidates" [value]="data.rejectedCandidates"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Offer Acceptance Rate" [value]="data.offerAcceptanceRate + '%'"></app-stat-card>
+      </div>
+      <div class="col-md-3 col-6">
+        <app-stat-card label="Avg. Interview Score" [value]="data.averageInterviewScore + '/5'"></app-stat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HR Metrics Row ──────────────────────────────────────────────── -->
+  <section class="section-block mb-4">
+    <h2 class="section-title mb-3">📈 HR Performance Metrics</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-ui metric-card">
+          <span class="metric-label">Job Fill Rate</span>
+          <div class="metric-value">{{ data.jobFillRate | number:'1.1-1' }}%</div>
+          <div class="metric-bar-track">
+            <div class="metric-bar" [style.width]="data.jobFillRate + '%'" style="background:#2563eb"></div>
+          </div>
+          <p class="metric-desc">{{ data.closedJobs }} of {{ data.totalJobs }} positions closed</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-ui metric-card">
+          <span class="metric-label">Candidate Conversion Rate</span>
+          <div class="metric-value">{{ data.candidateConversionRate | number:'1.1-1' }}%</div>
+          <div class="metric-bar-track">
+            <div class="metric-bar" [style.width]="data.candidateConversionRate + '%'" style="background:#0891b2"></div>
+          </div>
+          <p class="metric-desc">{{ data.hiredCandidates }} hired from total pipeline</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-ui metric-card">
+          <span class="metric-label">Offer Acceptance Rate</span>
+          <div class="metric-value">{{ data.offerAcceptanceRate | number:'1.1-1' }}%</div>
+          <div class="metric-bar-track">
+            <div class="metric-bar" [style.width]="data.offerAcceptanceRate + '%'" style="background:#16a34a"></div>
+          </div>
+          <p class="metric-desc">{{ data.hiredCandidates }} accepted of {{ data.offeredCandidates }} offered</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hiring Funnel ───────────────────────────────────────────────── -->
+  @if (funnel(); as f) {
+    <section class="section-block mb-4">
+      <h2 class="section-title mb-3">🔽 Recruitment Hiring Funnel</h2>
+      <div class="card-ui funnel-container">
+        @for (stage of [
+          { label: 'Applications', value: f.applications, color: '#2563eb' },
+          { label: 'Screening', value: f.screening, color: '#0891b2' },
+          { label: 'Shortlisted', value: f.shortlisted, color: '#7c3aed' },
+          { label: 'Interview', value: f.interview, color: '#d97706' },
+          { label: 'Offered', value: f.offered, color: '#059669' },
+          { label: 'Hired', value: f.hired, color: '#16a34a' }
+        ]; track stage.label) {
+          <div class="funnel-stage">
+            <div class="funnel-bar-wrap">
+              <div
+                class="funnel-bar"
+                [style.width]="getFunnelBarWidth(stage.value, f.applications)"
+                [style.background]="stage.color"
+              ></div>
+            </div>
+            <div class="funnel-meta">
+              <span class="funnel-label">{{ stage.label }}</span>
+              <span class="funnel-count">{{ stage.value }}</span>
+              <span class="funnel-pct">{{ getFunnelPercent(stage.value, f.applications) }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- ── Monthly Trends Bar Chart ─────────────────────────────────────── -->
+  <section class="section-block mb-4">
+    <h2 class="section-title mb-3">📅 Monthly Hiring Trend (Last 12 Months)</h2>
+    <div class="card-ui">
+      <div class="chart-bar-container">
+        @for (trend of data.monthlyTrends; track trend.month) {
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar bar-candidates" [style.height]="getBarHeight(trend.candidates)" title="Candidates: {{ trend.candidates }}"></div>
+              <div class="bar bar-interviews" [style.height]="getBarHeight(trend.interviews)" title="Interviews: {{ trend.interviews }}"></div>
+              <div class="bar bar-hires" [style.height]="getBarHeight(trend.hires)" title="Hires: {{ trend.hires }}"></div>
+            </div>
+            <span class="bar-label">{{ getMonthLabel(trend.month) }}</span>
+          </div>
+        }
+      </div>
+      <div class="chart-legend">
+        <span class="legend-item"><span class="dot" style="background:#2563eb"></span>Candidates</span>
+        <span class="legend-item"><span class="dot" style="background:#d97706"></span>Interviews</span>
+        <span class="legend-item"><span class="dot" style="background:#16a34a"></span>Hires</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Department Breakdown ─────────────────────────────────────────── -->
+  @if (data.departmentBreakdown.length > 0) {
+    <section class="section-block mb-4">
+      <h2 class="section-title mb-3">🏢 Hiring Activity by Department</h2>
+      <div class="card-ui p-0 overflow-hidden">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Department</th>
+              <th>Open Jobs</th>
+              <th>Total Applications</th>
+              <th>Applications Bar</th>
+              <th>Hired</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (dept of data.departmentBreakdown; track dept.department) {
+              <tr>
+                <td class="fw-bold">{{ dept.department }}</td>
+                <td>{{ dept.openJobs }}</td>
+                <td>{{ dept.applications }}</td>
+                <td>
+                  <div class="dept-bar-track">
+                    <div class="dept-bar" [style.width]="getDeptBarWidth(dept.applications)"></div>
+                  </div>
+                </td>
+                <td>{{ dept.hired }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+
+}

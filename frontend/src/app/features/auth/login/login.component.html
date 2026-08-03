@@ -1,0 +1,89 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <!-- Left panel -->
+    <section class="login-card__hero">
+      <p class="hero-eyebrow">RecruitPro</p>
+      <h1 class="hero-title">Hiring operations that feel executive-ready.</h1>
+      <p class="hero-desc">
+        Track candidate quality, pipeline health, interviews, and AI-backed
+        recommendations in one polished operating system.
+      </p>
+
+      <ul class="hero-features">
+        <li>🤖 AI-powered candidate scoring</li>
+        <li>📊 Real-time analytics dashboard</li>
+        <li>📅 Automated interview scheduling</li>
+        <li>🔐 Role-based access control</li>
+      </ul>
+    </section>
+
+    <!-- Right panel -->
+    <section class="login-card__form-wrap">
+      <div class="form-container">
+        <p class="form-eyebrow">Secure access</p>
+        <h2 class="form-title">Sign in to your workspace</h2>
+        <p class="form-hint">Select a seeded account below to fill credentials automatically:</p>
+
+        <!-- Quick Demo Account Fillers -->
+        <div class="demo-accounts">
+          <button type="button" class="demo-btn" (click)="fillAccount('admin@recruit.com', 'Admin123!')">
+            <span class="demo-role">Admin</span>
+            <span class="demo-email">admin&#64;recruit.com</span>
+          </button>
+
+          <button type="button" class="demo-btn" (click)="fillAccount('sarah@recruit.com', 'HrManager123!')">
+            <span class="demo-role">HR Manager</span>
+            <span class="demo-email">sarah&#64;recruit.com</span>
+          </button>
+
+          <button type="button" class="demo-btn" (click)="fillAccount('michael@recruit.com', 'Recruiter123!')">
+            <span class="demo-role">Recruiter</span>
+            <span class="demo-email">michael&#64;recruit.com</span>
+          </button>
+        </div>
+
+        @if (error()) {
+          <div class="form-error" role="alert">{{ error() }}</div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
+          <div class="field">
+            <label for="email" class="field__label">Work email</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="field__input"
+              autocomplete="email"
+              placeholder="admin@recruit.com"
+            />
+            @if (form.get('email')?.invalid && form.get('email')?.touched) {
+              <p class="field__error">Enter a valid email address.</p>
+            }
+          </div>
+
+          <div class="field">
+            <label for="password" class="field__label">Password</label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              class="field__input"
+              autocomplete="current-password"
+              placeholder="••••••••"
+            />
+            @if (form.get('password')?.invalid && form.get('password')?.touched) {
+              <p class="field__error">Password must be at least 6 characters.</p>
+            }
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="submitting()">
+            {{ submitting() ? 'Signing in...' : 'Sign in' }}
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</div>

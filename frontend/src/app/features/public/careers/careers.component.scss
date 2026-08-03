@@ -1,0 +1,92 @@
+.page-hero {
+  padding: 80px 0 50px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.05) 0%, rgba(244, 247, 251, 0) 100%);
+  .eyebrow { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #2563eb; letter-spacing: 0.2em; display: block; margin-bottom: 12px; }
+  .page-title { font-size: 2.75rem; font-weight: 800; color: var(--foreground); margin-bottom: 16px; max-width: 750px; margin-left: auto; margin-right: auto; }
+  .page-lead { font-size: 1.125rem; color: var(--muted); max-width: 620px; margin: 0 auto; }
+}
+
+.section { padding: 72px 0; }
+.bg-surface { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.section-header {
+  max-width: 600px;
+  margin: 0 auto 48px;
+  .eyebrow { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #2563eb; letter-spacing: 0.2em; display: block; margin-bottom: 8px; }
+  h2 { font-size: 2rem; font-weight: 800; }
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.benefit-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 20px;
+  .icon { font-size: 2rem; margin-bottom: 14px; }
+  h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+}
+
+.culture-wrap { max-width: 750px; margin: 0 auto; text-align: center; }
+.culture-text {
+  .eyebrow { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #2563eb; letter-spacing: 0.2em; display: block; margin-bottom: 10px; }
+  h2 { font-size: 2rem; font-weight: 800; margin-bottom: 16px; }
+  p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+}
+
+.culture-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  li { font-weight: 600; color: var(--foreground); font-size: 0.9375rem; }
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.dept-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 20px;
+  p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 20px; }
+}
+
+.dept-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  h3 { font-size: 1.25rem; font-weight: 700; margin: 0; }
+}
+
+.badge-dept {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.btn-dept-link {
+  font-weight: 700;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 0.875rem;
+  &:hover { text-decoration: underline; }
+}

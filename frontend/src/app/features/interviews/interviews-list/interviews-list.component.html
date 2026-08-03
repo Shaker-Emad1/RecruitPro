@@ -1,0 +1,148 @@
+<app-page-header
+  title="Interview Management"
+  eyebrow="HR Portal"
+  subtitle="Schedule technical and HR candidate interviews, manage Google Meet sessions, and record feedback."
+>
+  <button class="btn-ui-primary" (click)="showScheduleModal.set(true)">
+    + Schedule Interview
+  </button>
+</app-page-header>
+
+<!-- Schedule Modal -->
+@if (showScheduleModal()) {
+  <div class="modal-backdrop">
+    <div class="card-ui modal-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="card-title">Schedule Interview Session</h3>
+        <button class="btn-close-modal" (click)="showScheduleModal.set(false)">✕</button>
+      </div>
+
+      <form [formGroup]="scheduleForm" (ngSubmit)="submitSchedule()" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label-ui">Interview Type</label>
+          <select formControlName="type" class="form-control-ui">
+            <option value="Technical">Technical</option>
+            <option value="HR">HR & Cultural Fit</option>
+            <option value="Executive">Executive Final</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Location / Meeting Link</label>
+          <input type="text" formControlName="location" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Start Time</label>
+          <input type="datetime-local" formControlName="startTime" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">End Time</label>
+          <input type="datetime-local" formControlName="endTime" class="form-control-ui" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-ui">Session Notes</label>
+          <textarea formControlName="notes" rows="3" class="form-control-ui"></textarea>
+        </div>
+
+        <div class="col-12 text-end mt-4">
+          <button type="button" class="btn-ui-outline me-2" (click)="showScheduleModal.set(false)">Cancel</button>
+          <button type="submit" class="btn-ui-primary" [disabled]="scheduleForm.invalid || submitting()">
+            {{ submitting() ? 'Scheduling...' : 'Schedule & Send Invite' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- Feedback Modal -->
+@if (showFeedbackModal()) {
+  <div class="modal-backdrop">
+    <div class="card-ui modal-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="card-title">Record Interviewer Evaluation</h3>
+        <button class="btn-close-modal" (click)="showFeedbackModal.set(false)">✕</button>
+      </div>
+
+      <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label-ui">Rating (1 - 5 Stars)</label>
+          <input type="number" formControlName="rating" min="1" max="5" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Recommendation</label>
+          <select formControlName="recommendation" class="form-control-ui">
+            <option value="Hire">Strong Hire</option>
+            <option value="Consider">Consider</option>
+            <option value="Reject">Do Not Hire</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-ui">Interviewer Detailed Feedback</label>
+          <textarea formControlName="feedback" rows="3" class="form-control-ui"></textarea>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Strengths</label>
+          <input type="text" formControlName="strengths" class="form-control-ui" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label-ui">Areas for Growth</label>
+          <input type="text" formControlName="weaknesses" class="form-control-ui" />
+        </div>
+
+        <div class="col-12 text-end mt-4">
+          <button type="button" class="btn-ui-outline me-2" (click)="showFeedbackModal.set(false)">Cancel</button>
+          <button type="submit" class="btn-ui-primary" [disabled]="feedbackForm.invalid || submitting()">
+            {{ submitting() ? 'Saving...' : 'Submit Evaluation' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (loading()) {
+  <p class="text-muted">Loading scheduled interview sessions...</p>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else {
+  <div class="row g-4">
+    @for (interview of interviews(); track interview.id) {
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ui interview-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="type-tag">{{ interview.type }}</span>
+            <app-badge [text]="interview.status" [colorClass]="statusClass(interview.status)"></app-badge>
+          </div>
+
+          <h3 class="cand-heading">Candidate #{{ interview.candidateId.substring(0, 8) }}</h3>
+          <p class="date-text">📅 {{ interview.startTime | date:'medium' }}</p>
+          <p class="loc-text">📍 {{ interview.location }}</p>
+
+          @if (interview.meetingLink) {
+            <a [href]="interview.meetingLink" target="_blank" class="btn-meet">Join Session Link</a>
+          }
+
+          <div class="card-actions pt-3 border-top d-flex justify-content-between align-items-center mt-3">
+            <button class="btn-sm-fb" (click)="openFeedback(interview.id)">+ Feedback</button>
+            <div class="d-flex gap-1">
+              <button class="btn-status-done" (click)="updateStatus(interview, 'Completed')">Complete</button>
+              <button class="btn-status-cancel" (click)="updateStatus(interview, 'Cancelled')">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <p class="text-muted text-center py-4">No interviews currently scheduled.</p>
+      </div>
+    }
+  </div>
+}

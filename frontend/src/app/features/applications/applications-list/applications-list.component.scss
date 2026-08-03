@@ -1,0 +1,105 @@
+.active-mode {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+
+.pipeline-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(5, 260px);
+  }
+}
+
+.pipeline-column {
+  background: var(--surface-muted);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+
+  .column-title { font-size: 0.875rem; font-weight: 800; text-transform: uppercase; color: var(--foreground); }
+  .column-count { font-size: 0.75rem; font-weight: 800; background: var(--surface); padding: 2px 8px; border-radius: 12px; }
+}
+
+.column-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.pipeline-card {
+  padding: 16px;
+  .cand-name { font-size: 0.9375rem; font-weight: 700; margin: 0; }
+  .job-ref { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+  .card-meta { font-size: 0.7rem; color: var(--muted); }
+}
+
+.empty-column-state {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  padding: 24px 0;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.stage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.btn-action {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-screen { background: #eff6ff; color: #1d4ed8; }
+.btn-interview { background: #fffbeb; color: #b45309; }
+.btn-offer { background: #f0fdf4; color: #166534; }
+.btn-hire { background: #0f766e; color: #fff; }
+.btn-reject { background: #fef2f2; color: #b91c1c; }
+
+.table-ui {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 14px 18px;
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th { background: var(--surface-muted); font-weight: 700; text-align: left; }
+}
+
+.btn-sm-action {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,70 @@
+<app-page-header
+  title="System Settings"
+  eyebrow="Admin Portal"
+  subtitle="Configure company info, JWT token expiry, SMTP server credentials, and resume upload policies."
+></app-page-header>
+
+<div class="card-ui">
+  <form [formGroup]="form" (ngSubmit)="saveSettings()" class="row g-4">
+    <!-- General Settings -->
+    <div class="col-12">
+      <h3 class="settings-group-title">🏢 General & Company Settings</h3>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">Company Name</label>
+      <input type="text" formControlName="companyName" class="form-control-ui" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">Support Email</label>
+      <input type="email" formControlName="supportEmail" class="form-control-ui" />
+    </div>
+
+    <!-- Security & Auth -->
+    <div class="col-12 pt-3 border-top">
+      <h3 class="settings-group-title">🔐 Security & JWT Authentication</h3>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">JWT Token Expiry (Hours)</label>
+      <input type="number" formControlName="jwtExpiryHours" class="form-control-ui" />
+    </div>
+
+    <!-- SMTP Mail -->
+    <div class="col-12 pt-3 border-top">
+      <h3 class="settings-group-title">📧 SMTP Email Server</h3>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">SMTP Hostname</label>
+      <input type="text" formControlName="smtpHost" class="form-control-ui" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">SMTP Port</label>
+      <input type="number" formControlName="smtpPort" class="form-control-ui" />
+    </div>
+
+    <!-- Resume File Upload Settings -->
+    <div class="col-12 pt-3 border-top">
+      <h3 class="settings-group-title">📄 Resume Upload Policies</h3>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">Max Resume Size (MB)</label>
+      <input type="number" formControlName="maxResumeSizeMb" class="form-control-ui" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label-ui">Allowed Extensions</label>
+      <input type="text" formControlName="allowedResumeFormats" class="form-control-ui" />
+    </div>
+
+    <div class="col-12 text-end mt-4 pt-3 border-top">
+      <button type="submit" class="btn-ui-primary" [disabled]="form.invalid || saving()">
+        {{ saving() ? 'Saving Settings...' : 'Save Configuration Changes' }}
+      </button>
+    </div>
+  </form>
+</div>

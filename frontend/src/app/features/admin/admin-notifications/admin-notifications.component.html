@@ -1,0 +1,72 @@
+<app-page-header
+  title="Broadcast Notification Center"
+  eyebrow="Admin Portal"
+  subtitle="Send system-wide broadcast announcements to candidates, recruiters, and HR managers."
+>
+  <button class="btn-ui-primary" (click)="showBroadcastModal.set(true)">
+    📢 Send Broadcast Announcement
+  </button>
+</app-page-header>
+
+<!-- Broadcast Modal -->
+@if (showBroadcastModal()) {
+  <div class="modal-backdrop">
+    <div class="card-ui modal-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="card-title">Broadcast System Notification</h3>
+        <button class="btn-close-modal" (click)="showBroadcastModal.set(false)">✕</button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="broadcast()" class="row g-3">
+        <div class="col-md-8">
+          <label class="form-label-ui">Notification Title</label>
+          <input type="text" formControlName="title" class="form-control-ui" placeholder="e.g. System Update" />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label-ui">Target Audience</label>
+          <select formControlName="targetRole" class="form-control-ui">
+            <option value="All Roles">All Users & Roles</option>
+            <option value="Candidate">Candidates Only</option>
+            <option value="HRManager">HR Managers</option>
+            <option value="Recruiter">Recruiters</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label-ui">Message Body</label>
+          <textarea formControlName="message" rows="4" class="form-control-ui" placeholder="Enter broadcast message text..."></textarea>
+        </div>
+
+        <div class="col-12 text-end mt-4">
+          <button type="button" class="btn-ui-outline me-2" (click)="showBroadcastModal.set(false)">Cancel</button>
+          <button type="submit" class="btn-ui-primary" [disabled]="form.invalid || submitting()">
+            {{ submitting() ? 'Broadcasting...' : 'Send Broadcast' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<div class="row g-4">
+  @for (n of notifications(); track n.id) {
+    <div class="col-md-6">
+      <div class="card-ui notif-card">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="notif-title">📢 {{ n.title }}</h3>
+          <app-badge [text]="n.targetRole" colorClass="badge-blue"></app-badge>
+        </div>
+        <p class="notif-msg">{{ n.message }}</p>
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-2">
+          <span class="small-text text-muted">{{ n.createdAt | date:'medium' }}</span>
+          <button class="btn-sm-del" (click)="deleteNotification(n.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+  } @empty {
+    <div class="col-12">
+      <p class="text-muted text-center py-4">No active broadcast notifications.</p>
+    </div>
+  }
+</div>

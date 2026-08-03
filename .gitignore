@@ -1,0 +1,40 @@
+# ── .NET / Visual Studio ─────────────────────────
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+# ── Database & Storage ───────────────────────────
+*.db
+*.db-shm
+*.db-wal
+Uploads/Resumes/*
+!Uploads/Resumes/.gitkeep
+
+# ── Logs ─────────────────────────────────────────
+logs/
+*.log
+
+# ── Node / Angular ───────────────────────────────
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Environment & Local Configs ──────────────────
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.local
+
+# ── OS Generated Files ───────────────────────────
+.DS_Store
+Thumbs.db

@@ -1,0 +1,15 @@
+.flex-1 { flex: 1; }
+.small-text { font-size: 0.8125rem; }
+
+.table-ui {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 14px 18px;
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th { background: var(--surface-muted); font-weight: 700; text-align: left; }
+}

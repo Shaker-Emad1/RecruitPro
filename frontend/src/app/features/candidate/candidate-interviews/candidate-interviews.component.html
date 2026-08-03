@@ -1,0 +1,65 @@
+<app-page-header
+  title="Interview Schedule"
+  eyebrow="Candidate Portal"
+  subtitle="View your upcoming and past interview sessions."
+></app-page-header>
+
+@if (loading()) {
+  <p class="text-muted">Loading interviews...</p>
+} @else {
+  @if (interviews().length === 0) {
+    <div class="card-ui text-center py-5">
+      <div style="font-size:3rem;margin-bottom:16px">📅</div>
+      <h3>No Interviews Scheduled</h3>
+      <p class="text-muted">Your interview invitations will appear here once scheduled by HR.</p>
+    </div>
+  } @else {
+    <div class="row g-4">
+      @for (interview of interviews(); track interview.id) {
+        <div class="col-md-6">
+          <div class="card-ui interview-card">
+            <div class="interview-type-badge">
+              @if (interview.type === 'Technical') {
+                <app-badge text="Technical Interview" colorClass="badge-blue"></app-badge>
+              } @else {
+                <app-badge text="HR Interview" colorClass="badge-teal"></app-badge>
+              }
+            </div>
+
+            <h3 class="interview-title">{{ interview.type }} Evaluation Session</h3>
+
+            <div class="interview-meta">
+              <div class="meta-item">
+                <span class="meta-icon">📅</span>
+                <span>{{ interview.startTime | date:'fullDate' }}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-icon">🕐</span>
+                <span>{{ interview.startTime | date:'shortTime' }} — {{ interview.endTime | date:'shortTime' }}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-icon">📍</span>
+                <span>{{ interview.location || 'Online via Google Meet' }}</span>
+              </div>
+            </div>
+
+            <app-badge [text]="interview.status" colorClass="badge-slate"></app-badge>
+
+            @if (interview.meetingLink) {
+              <a [href]="interview.meetingLink" target="_blank" class="btn-ui-primary mt-3 w-100 justify-content-center">
+                🎥 Join Google Meet Session
+              </a>
+            }
+
+            @if (interview.notes) {
+              <div class="interview-notes mt-3">
+                <span class="notes-label">Notes from HR:</span>
+                <p class="notes-text">{{ interview.notes }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+}

@@ -1,0 +1,66 @@
+<div class="page-hero text-center">
+  <div class="container">
+    <span class="eyebrow">Get In Touch</span>
+    <h1 class="page-title">Contact Our Recruitment & Support Team</h1>
+    <p class="page-lead">Have questions regarding open positions, application processes, or partnership opportunities?</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Form Side -->
+      <div class="contact-form-card">
+        <h2>Send Us A Message</h2>
+        <form [formGroup]="form" (ngSubmit)="submitForm()" class="form">
+          <div class="field">
+            <label class="field-label">Full Name</label>
+            <input type="text" formControlName="fullName" placeholder="Sarah Connor" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Work Email</label>
+            <input type="email" formControlName="email" placeholder="sarah@example.com" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Subject</label>
+            <input type="text" formControlName="subject" placeholder="Inquiry regarding Engineering roles" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Message</label>
+            <textarea formControlName="message" rows="4" placeholder="How can we assist you?" class="field-input"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="form.invalid || submitting()">
+            {{ submitting() ? 'Sending Message...' : 'Send Message →' }}
+          </button>
+        </form>
+      </div>
+
+      <!-- Office Info Side -->
+      <div class="office-info-side">
+        <div class="info-card">
+          <div class="icon">📍</div>
+          <h3>Global Headquarters</h3>
+          <p>100 Innovation Way, Suite 400<br>San Francisco, CA 94105</p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon">📧</div>
+          <h3>Direct Contact</h3>
+          <p>Support: support&#64;recruitpro.com<br>Recruitment: talent&#64;recruitpro.com</p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon">🕒</div>
+          <h3>Office Hours</h3>
+          <p>Monday – Friday: 8:00 AM – 6:00 PM PST<br>Weekend: Closed</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

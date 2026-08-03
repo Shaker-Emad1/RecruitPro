@@ -1,0 +1,119 @@
+@if (loading()) {
+  <div class="loading-state"><div class="spinner"></div><p>Loading candidate...</p></div>
+} @else if (error() || !candidate()) {
+  <div class="error-state">{{ error() || 'Candidate not found.' }}</div>
+} @else {
+  <app-page-header
+    eyebrow="Candidate Profile"
+    [title]="candidate()!.fullName"
+    [description]="candidate()!.aiSummary || 'Candidate profile overview and AI review.'"
+  >
+    <a routerLink="/candidates" class="btn-back">← Back to list</a>
+  </app-page-header>
+
+  <div class="detail-grid">
+
+    <!-- Profile card -->
+    <article class="card">
+      <div class="badges-row">
+        <app-badge [text]="candidate()!.status"         colorClass="badge-blue" />
+        <app-badge [text]="candidate()!.classification" colorClass="badge-teal" />
+        <app-badge [text]="'AI Score ' + candidate()!.aiScore" colorClass="badge-dark" />
+      </div>
+
+      <dl class="info-grid">
+        <div class="info-item">
+          <dt>Email</dt>
+          <dd>{{ candidate()!.email }}</dd>
+        </div>
+        <div class="info-item">
+          <dt>Phone</dt>
+          <dd>{{ candidate()!.phone || 'Not provided' }}</dd>
+        </div>
+        <div class="info-item">
+          <dt>Location</dt>
+          <dd>{{ candidate()!.location || 'Not provided' }}</dd>
+        </div>
+        <div class="info-item">
+          <dt>Experience</dt>
+          <dd>{{ candidate()!.yearsOfExperience }} years</dd>
+        </div>
+        <div class="info-item">
+          <dt>Education</dt>
+          <dd>{{ candidate()!.education || 'Not specified' }}</dd>
+        </div>
+        <div class="info-item">
+          <dt>Certifications</dt>
+          <dd>{{ candidate()!.certifications || 'None listed' }}</dd>
+        </div>
+      </dl>
+
+      @if (candidate()!.skills.length) {
+        <div class="skills-section">
+          <h3 class="section-title">Skills</h3>
+          <div class="skills-wrap">
+            @for (skill of candidate()!.skills; track skill.name) {
+              <span class="skill-chip">{{ skill.name }}</span>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="links-row">
+        @if (candidate()!.linkedInUrl) {
+          <a [href]="candidate()!.linkedInUrl" target="_blank" class="ext-link">LinkedIn ↗</a>
+        }
+        @if (candidate()!.gitHubUrl) {
+          <a [href]="candidate()!.gitHubUrl" target="_blank" class="ext-link">GitHub ↗</a>
+        }
+        @if (candidate()!.portfolioUrl) {
+          <a [href]="candidate()!.portfolioUrl!" target="_blank" class="ext-link">Portfolio ↗</a>
+        }
+      </div>
+    </article>
+
+    <!-- AI Analysis card -->
+    <article class="card ai-card">
+      <h2 class="card-title">AI Analysis</h2>
+
+      <div class="ai-section">
+        <h3>Strengths</h3>
+        <p>{{ candidate()!.aiStrengths || 'Strengths will appear after analysis runs.' }}</p>
+      </div>
+      <div class="ai-section">
+        <h3>Weaknesses</h3>
+        <p>{{ candidate()!.aiWeaknesses || 'Weaknesses will appear after analysis runs.' }}</p>
+      </div>
+      <div class="ai-section">
+        <h3>Recommendation</h3>
+        <p>{{ candidate()!.aiHiringRecommendation || 'No recommendation available yet.' }}</p>
+      </div>
+      @if (candidate()!.aiInterviewQuestions) {
+        <div class="ai-section">
+          <h3>Interview Questions</h3>
+          <p>{{ candidate()!.aiInterviewQuestions }}</p>
+        </div>
+      }
+    </article>
+  </div>
+
+  <!-- Applications section -->
+  <article class="card apps-card">
+    <h2 class="card-title">Applications</h2>
+    @if (applications().length === 0) {
+      <p class="empty-msg">No applications linked to this candidate yet.</p>
+    } @else {
+      <div class="apps-list">
+        @for (app of applications(); track app.id) {
+          <div class="app-row">
+            <div>
+              <p class="app-job">{{ app.jobTitle }}</p>
+              <p class="app-status">{{ app.status }}</p>
+            </div>
+            <span class="app-match">Match {{ app.matchScore }}%</span>
+          </div>
+        }
+      </div>
+    }
+  </article>
+}

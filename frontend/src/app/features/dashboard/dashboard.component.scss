@@ -1,0 +1,242 @@
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (min-width: 768px)  { grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 1280px) { grid-template-columns: repeat(5, 1fr); }
+}
+
+.charts-row {
+  display: grid;
+  gap: 20px;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 4px;
+}
+
+.card-sub {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.card-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+// ── Bar chart ──────────────────────────────────────────────
+.chart-card { display: flex; flex-direction: column; }
+
+.bar-chart {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  flex: 1;
+  min-height: 180px;
+  align-items: flex-end;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 160px;
+  width: 100%;
+  justify-content: center;
+}
+
+.bar {
+  width: 10px;
+  border-radius: 4px;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 4px;
+
+  &--candidates { background: rgba(15, 23, 42, 0.85); }
+  &--interviews  { background: rgba(13, 148, 136, 0.85); }
+  &--hires       { background: rgba(59, 130, 246, 0.85); }
+}
+
+.bar-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--muted-strong);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+
+  &.dot--candidates { background: rgba(15, 23, 42, 0.85); }
+  &.dot--interviews  { background: rgba(13, 148, 136, 0.85); }
+  &.dot--hires       { background: rgba(59, 130, 246, 0.85); }
+}
+
+// ── Side panels ────────────────────────────────────────────
+.side-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ── Funnel ─────────────────────────────────────────────────
+.funnel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.funnel-row { display: flex; flex-direction: column; gap: 6px; }
+
+.funnel-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.funnel-label { font-size: 0.8125rem; font-weight: 600; color: var(--muted-strong); }
+.funnel-count { font-size: 0.8125rem; color: var(--muted); }
+
+.funnel-track {
+  height: 10px;
+  background: var(--surface-muted);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.funnel-fill {
+  height: 100%;
+  background: var(--foreground);
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ── Insights ───────────────────────────────────────────────
+.insight-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  li {
+    font-size: 0.875rem;
+    color: var(--muted-strong);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+  }
+}
+
+// ── States ─────────────────────────────────────────────────
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--foreground);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-state {
+  padding: 24px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 16px;
+  color: #991b1b;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+}

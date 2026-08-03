@@ -1,0 +1,66 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.register-card__hero {
+  display: none;
+  background: linear-gradient(160deg, #0f172a 0%, #1e293b 48%, #2563eb 100%);
+  padding: 52px 44px;
+  color: #fff;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.25em; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+  .hero-title { font-size: 2rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px; }
+  .hero-desc { font-size: 0.9rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 28px; }
+  .hero-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; li { font-size: 0.875rem; color: rgba(255,255,255,0.85); } }
+}
+
+.register-card__form {
+  background: #fff;
+  padding: 48px 40px;
+
+  .form-eyebrow { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #2563eb; letter-spacing: 0.2em; margin-bottom: 6px; }
+  .form-title { font-size: 1.75rem; font-weight: 800; color: var(--foreground); margin-bottom: 6px; }
+  .form-subtitle { font-size: 0.84rem; color: var(--muted); margin-bottom: 20px; }
+}
+
+.field-label { font-size: 0.8125rem; font-weight: 700; color: var(--muted-strong); margin-bottom: 4px; display: block; }
+.field-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-strong); border-radius: 12px; font-size: 0.9rem; outline: none; &:focus { border-color: #2563eb; } }
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--foreground);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  &:disabled { opacity: 0.55; cursor: not-allowed; }
+}
+
+.login-link { font-size: 0.84rem; color: var(--muted); a { font-weight: 700; color: #2563eb; text-decoration: none; &:hover { text-decoration: underline; } } }

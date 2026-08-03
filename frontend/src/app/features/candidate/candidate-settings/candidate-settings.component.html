@@ -1,0 +1,44 @@
+<app-page-header
+  title="Account Settings"
+  eyebrow="Candidate Portal"
+  subtitle="Manage your account security and personal preferences."
+></app-page-header>
+
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="card-ui">
+      <h3 class="card-title mb-1">Change Password</h3>
+      <p class="small-muted mb-4">Choose a strong password with at least 6 characters.</p>
+
+      <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="d-flex flex-column gap-3">
+        <div>
+          <label class="form-label-ui">Current Password</label>
+          <input type="password" formControlName="currentPassword" class="form-control-ui" placeholder="••••••••" />
+        </div>
+        <div>
+          <label class="form-label-ui">New Password</label>
+          <input type="password" formControlName="newPassword" class="form-control-ui" placeholder="••••••••" />
+        </div>
+        <div>
+          <label class="form-label-ui">Confirm New Password</label>
+          <input type="password" formControlName="confirmPassword" class="form-control-ui" placeholder="••••••••" />
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn-ui-primary" [disabled]="passwordForm.invalid || saving()">
+            {{ saving() ? 'Saving...' : 'Update Password' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card-ui danger-zone">
+      <h3 class="card-title mb-1" style="color: var(--danger)">Account Actions</h3>
+      <p class="small-muted mb-4">Manage your active session and account access.</p>
+      <button class="btn-ui-outline w-100" (click)="logout()">
+        🚪 Sign Out of All Sessions
+      </button>
+    </div>
+  </div>
+</div>

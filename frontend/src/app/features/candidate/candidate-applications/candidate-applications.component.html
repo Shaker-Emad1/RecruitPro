@@ -1,0 +1,45 @@
+<app-page-header
+  title="My Applications"
+  eyebrow="Candidate Portal"
+  subtitle="Track the full status of every job application you have submitted."
+></app-page-header>
+
+@if (loading()) {
+  <p class="text-muted">Loading your applications...</p>
+} @else {
+  @if (applications().length === 0) {
+    <div class="card-ui text-center py-5">
+      <div style="font-size:3rem;margin-bottom:16px">📭</div>
+      <h3>No Applications Yet</h3>
+      <p class="text-muted">Start by browsing and applying to active job openings.</p>
+      <a routerLink="/jobs" class="btn-ui-primary mt-3">Explore Open Roles</a>
+    </div>
+  } @else {
+    <div class="applications-list">
+      @for (app of applications(); track app.id) {
+        <div class="card-ui app-card">
+          <div class="app-card__header">
+            <div>
+              <h3 class="app-job-title">Senior Full-Stack .NET Engineer</h3>
+              <span class="app-company">Engineering Division</span>
+            </div>
+            <app-badge [text]="app.status" colorClass="badge-blue"></app-badge>
+          </div>
+
+          <div class="pipeline-track">
+            @for (step of ['Applied', 'Screening', 'Interview', 'Offered', 'Hired']; track step) {
+              <div class="pipeline-step" [class.completed]="isStepCompleted(app.status, step)">
+                <div class="step-dot"></div>
+                <span class="step-label">{{ step }}</span>
+              </div>
+            }
+          </div>
+
+          <div class="app-footer">
+            <span class="app-date">Applied: {{ app.createdAt | date:'mediumDate' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+}
