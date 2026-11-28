@@ -9,7 +9,7 @@ A high-performance Enterprise Recruitment Management System built with **ASP.NET
 ### Backend
 - **Framework**: ASP.NET Core 10 Web API
 - **Architecture**: Clean Architecture (API, Application, Domain, Infrastructure)
-- **Data Access**: Entity Framework Core 10 (SQLite / SQL Server)
+- **Data Access**: Entity Framework Core 10 (SQLite by default; SQL Server provider package included)
 - **Security & Auth**: JWT Bearer Tokens, ASP.NET Core Identity & Role Authorization
 - **Documentation & Logging**: Serilog, Swagger / OpenAPI 3.0
 
@@ -32,6 +32,13 @@ cd backend/API
 dotnet run
 # API runs at http://localhost:5136
 # Swagger UI at http://localhost:5136/swagger
+```
+
+### Or run everything in Docker (frontend + API in one container)
+```bash
+docker build -t recruitpro .
+docker run -p 8080:8080 -e Jwt__Key="pick-a-long-random-string" recruitpro
+# App + API at http://localhost:8080
 ```
 
 ### 2. Run Angular Frontend
@@ -88,6 +95,14 @@ npm start
 5. **Executive Analytics** (`/hr/analytics`) — Hiring conversion funnel, 12-month trend charts, department breakdown, offer acceptance rate, and CSV data exporter.
 
 ---
+
+## 🌐 Live Demo
+
+Deployed as a single Docker container (Angular frontend served by the API, SQLite seed data).
+
+> Demo notes: the free host sleeps when idle, so the first load can take ~30–60s.
+> AI candidate analysis needs an `OpenAI__ApiKey`; without it a built-in heuristic
+> scorer fills summaries and scores. SQLite reseeds on redeploy, so demo data resets.
 
 ## 📜 License
 
