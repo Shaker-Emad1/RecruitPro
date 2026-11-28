@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: recruitpro
+    runtime: docker
+    plan: free
+    healthCheckPath: /swagger/index.html
+    envVars:
+      - { key: Jwt__Key, generateValue: true }
+      - { key: ConnectionStrings__SqliteConnection, value: "Data Source=/tmp/recruitment.db" }
