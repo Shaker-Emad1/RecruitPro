@@ -1,26 +1,26 @@
 @if (loading()) {
   <div class="loading-state">
     <div class="spinner"></div>
-    <p>Loading dashboard...</p>
+    <p>{{ 'dash.loading' | t }}</p>
   </div>
 } @else if (error()) {
   <div class="error-state">{{ error() }}</div>
 } @else if (analytics()) {
   <app-page-header
-    eyebrow="Executive Overview"
-    title="Recruitment performance command center"
-    description="A high-level view of candidate quality, pipeline momentum, and upcoming hiring activity."
+    eyebrow="{{ 'dash.eyebrow' | t }}"
+    title="{{ 'dash.title' | t }}"
+    description="{{ 'dash.sub' | t }}"
   >
-    <a routerLink="/candidates" class="btn-primary">Review pipeline</a>
+    <a routerLink="/candidates" class="btn-primary">{{ 'dash.review' | t }}</a>
   </app-page-header>
 
   <!-- KPI Grid -->
   <div class="kpi-grid">
-    <app-stat-card label="Total Candidates"      [value]="analytics()!.totalCandidates" />
-    <app-stat-card label="Qualified Candidates"  [value]="analytics()!.qualifiedCandidates" />
-    <app-stat-card label="Open Positions"        [value]="analytics()!.openPositions" />
-    <app-stat-card label="Interviews Scheduled"  [value]="analytics()!.interviewsScheduled" />
-    <app-stat-card label="Hiring Rate"           [value]="analytics()!.hiringConversionRate + '%'" />
+    <app-stat-card [label]="'dash.total' | t"      [value]="analytics()!.totalCandidates" />
+    <app-stat-card [label]="'dash.qualified' | t"  [value]="analytics()!.qualifiedCandidates" />
+    <app-stat-card [label]="'dash.open' | t"        [value]="analytics()!.openPositions" />
+    <app-stat-card [label]="'dash.scheduled' | t"  [value]="analytics()!.interviewsScheduled" />
+    <app-stat-card [label]="'dash.rate' | t"           [value]="analytics()!.hiringConversionRate + '%'" />
   </div>
 
   <!-- Charts row -->
@@ -30,10 +30,10 @@
     <article class="card chart-card">
       <div class="card-header">
         <div>
-          <h2 class="card-title">Candidate Growth</h2>
-          <p class="card-sub">Monthly movement across candidates, interviews & hires.</p>
+          <h2 class="card-title">{{ 'dash.growth' | t }}</h2>
+          <p class="card-sub">{{ 'dash.growth.sub' | t }}</p>
         </div>
-        <span class="card-label">Last 6 months</span>
+        <span class="card-label">{{ 'dash.last6' | t }}</span>
       </div>
 
       <div class="bar-chart">
@@ -50,9 +50,9 @@
       </div>
 
       <div class="chart-legend">
-        <span class="legend-item"><span class="legend-dot dot--candidates"></span> Candidates</span>
-        <span class="legend-item"><span class="legend-dot dot--interviews"></span> Interviews</span>
-        <span class="legend-item"><span class="legend-dot dot--hires"></span>      Hires</span>
+        <span class="legend-item"><span class="legend-dot dot--candidates"></span> {{ 'dash.series.candidates' | t }}</span>
+        <span class="legend-item"><span class="legend-dot dot--interviews"></span> {{ 'dash.series.interviews' | t }}</span>
+        <span class="legend-item"><span class="legend-dot dot--hires"></span> {{ 'dash.series.hires' | t }}</span>
       </div>
     </article>
 
@@ -61,12 +61,12 @@
 
       <!-- Funnel -->
       <article class="card">
-        <h2 class="card-title">Hiring Funnel</h2>
+        <h2 class="card-title">{{ 'dash.funnel' | t }}</h2>
         <div class="funnel-list">
           @for (row of funnelRows; track row.label) {
             <div class="funnel-row">
               <div class="funnel-meta">
-                <span class="funnel-label">{{ row.label }}</span>
+                <span class="funnel-label">{{ row.label | t }}</span>
                 <span class="funnel-count">{{ row.count }}</span>
               </div>
               <div class="funnel-track">
@@ -79,11 +79,11 @@
 
       <!-- Insights -->
       <article class="card">
-        <h2 class="card-title">Upcoming Focus</h2>
+        <h2 class="card-title">{{ 'dash.focus' | t }}</h2>
         <ul class="insight-list">
-          <li>Prioritize candidates scoring above the current average of <strong>{{ analytics()!.averageCandidateScore }}</strong>.</li>
-          <li>Review open roles to keep funnel velocity aligned with interview load.</li>
-          <li>Use interview scheduling to convert shortlisted talent before pipeline slows.</li>
+          <li>{{ 'dash.focus1' | t }} <strong>{{ analytics()!.averageCandidateScore }}</strong>.</li>
+          <li>{{ 'dash.focus2' | t }}</li>
+          <li>{{ 'dash.focus3' | t }}</li>
         </ul>
       </article>
 

@@ -22,7 +22,7 @@
           (click)="closeSidebar()"
         >
           <app-icon class="nav-icon" [name]="item.icon" [size]="18" />
-          <span class="nav-label">{{ item.label }}</span>
+          <span class="nav-label">{{ item.label | t }}</span>
         </a>
       }
     </nav>
@@ -35,7 +35,7 @@
           <span class="user-role">{{ auth.userRole() }}</span>
         </div>
       </div>
-      <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> Sign out</button>
+      <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> {{ 'side.signout' | t }}</button>
     </div>
   </aside>
 

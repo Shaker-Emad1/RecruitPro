@@ -4,26 +4,25 @@
     <!-- Left panel -->
     <section class="login-card__hero">
       <p class="hero-eyebrow">RecruitPro</p>
-      <h1 class="hero-title">Hiring operations that feel executive-ready.</h1>
+      <h1 class="hero-title">{{ 'login.side.title' | t }}</h1>
       <p class="hero-desc">
-        Track candidate quality, pipeline health, interviews, and AI-backed
-        recommendations in one polished operating system.
+        {{ 'login.side.sub' | t }}
       </p>
 
       <ul class="hero-features">
-        <li>AI-powered candidate scoring</li>
-        <li>Real-time analytics dashboard</li>
-        <li>Automated interview scheduling</li>
-        <li>Role-based access control</li>
+        <li>{{ 'login.side.l1' | t }}</li>
+        <li>{{ 'login.side.l2' | t }}</li>
+        <li>{{ 'login.side.l3' | t }}</li>
+        <li>{{ 'login.side.l4' | t }}</li>
       </ul>
     </section>
 
     <!-- Right panel -->
     <section class="login-card__form-wrap">
       <div class="form-container">
-        <p class="form-eyebrow">Secure access</p>
-        <h2 class="form-title">Sign in to your workspace</h2>
-        <p class="form-hint">Select a seeded account below to fill credentials automatically:</p>
+        <p class="form-eyebrow">{{ 'login.kicker' | t }}</p>
+        <h2 class="form-title">{{ 'login.title' | t }}</h2>
+        <p class="form-hint">{{ 'login.demo' | t }}</p>
 
         <!-- Quick Demo Account Fillers -->
         <div class="demo-accounts">
@@ -49,7 +48,7 @@
 
         <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
           <div class="field">
-            <label for="email" class="field__label">Work email</label>
+            <label for="email" class="field__label">{{ 'login.email' | t }}</label>
             <input
               id="email"
               type="email"
@@ -59,12 +58,12 @@
               placeholder="admin@recruit.com"
             />
             @if (form.get('email')?.invalid && form.get('email')?.touched) {
-              <p class="field__error">Enter a valid email address.</p>
+              <p class="field__error">{{ 'login.err.email' | t }}</p>
             }
           </div>
 
           <div class="field">
-            <label for="password" class="field__label">Password</label>
+            <label for="password" class="field__label">{{ 'login.password' | t }}</label>
             <input
               id="password"
               type="password"
@@ -74,12 +73,12 @@
               placeholder="••••••••"
             />
             @if (form.get('password')?.invalid && form.get('password')?.touched) {
-              <p class="field__error">Password must be at least 6 characters.</p>
+              <p class="field__error">{{ 'login.err.password' | t }}</p>
             }
           </div>
 
           <button type="submit" class="btn-submit" [disabled]="submitting()">
-            {{ submitting() ? 'Signing in...' : 'Sign in' }}
+            {{ submitting() ? ('login.signing' | t) : ('login.submit' | t) }}
           </button>
         </form>
       </div>

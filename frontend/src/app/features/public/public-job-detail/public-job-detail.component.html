@@ -1,17 +1,17 @@
 @if (loading()) {
   <div class="text-center py-5">
     <div class="spinner-border text-primary" role="status"></div>
-    <p class="mt-2 text-muted">Loading position details...</p>
+    <p class="mt-2 text-muted">{{ 'job.loading' | t }}</p>
   </div>
 } @else if (error()) {
   <div class="container py-5">
     <div class="alert alert-danger">{{ error() }}</div>
-    <a routerLink="/jobs" class="btn btn-outline-primary">← Back to Jobs</a>
+    <a routerLink="/jobs" class="btn btn-outline-primary">{{ 'job.back' | t }} →</a>
   </div>
 } @else if (job(); as j) {
   <div class="job-header-banner">
     <div class="container">
-      <a routerLink="/jobs" class="back-link">← Back to all positions</a>
+      <a routerLink="/jobs" class="back-link">{{ 'job.back2' | t }} →</a>
       <div class="d-flex justify-content-between align-items-start mt-3">
         <div>
           <span class="dept-badge">{{ j.department }}</span>
@@ -23,7 +23,7 @@
             <span><app-icon name="calendar" [size]="16" /> Posted {{ j.createdAt | date:'mediumDate' }}</span>
           </div>
         </div>
-        <a routerLink="/register" class="btn-apply-hero">Apply Now →</a>
+        <a routerLink="/register" class="btn-apply-hero">← {{ 'job.apply' | t }}</a>
       </div>
     </div>
   </div>
@@ -33,29 +33,29 @@
       <!-- Main Detail Content -->
       <div class="main-content">
         <section class="detail-section">
-          <h2>Position Overview</h2>
+          <h2>{{ 'job.overview' | t }}</h2>
           <p>{{ j.description }}</p>
         </section>
 
         <section class="detail-section">
-          <h2>Requirements & Qualifications</h2>
+          <h2>{{ 'job.requirements' | t }}</h2>
           <p>{{ j.requirements }}</p>
         </section>
 
         <section class="detail-section">
-          <h2>Required Skills</h2>
+          <h2>{{ 'job.skills' | t }}</h2>
           <div class="skills-tags">
             <span class="skill-chip">{{ j.requiredSkills }}</span>
           </div>
         </section>
 
         <section class="detail-section">
-          <h2>Benefits & Perks</h2>
+          <h2>{{ 'job.benefits' | t }}</h2>
           <ul>
-            <li>Comprehensive medical, dental, and vision insurance</li>
-            <li>Flexible remote & hybrid work environment</li>
-            <li>Generous 401(k) matching & equity incentive options</li>
-            <li>Annual learning budget for courses, certifications, and conferences</li>
+            <li>{{ 'job.benefit1' | t }}</li>
+            <li>{{ 'job.benefit2' | t }}</li>
+            <li>{{ 'job.benefit3' | t }}</li>
+            <li>{{ 'job.benefit4' | t }}</li>
           </ul>
         </section>
       </div>
@@ -63,30 +63,30 @@
       <!-- Sidebar Card -->
       <div class="sidebar-content">
         <div class="summary-card">
-          <h3>Apply For Position</h3>
+          <h3>{{ 'job.applytitle' | t }}</h3>
           <p class="small-text">Submit your profile to join our hiring pipeline for {{ j.title }}.</p>
 
           <div class="summary-meta">
             <div class="meta-row">
-              <span class="meta-label">Department</span>
+              <span class="meta-label">{{ 'job.dept' | t }}</span>
               <span class="meta-val">{{ j.department }}</span>
             </div>
             <div class="meta-row">
-              <span class="meta-label">Location</span>
+              <span class="meta-label">{{ 'job.loc' | t }}</span>
               <span class="meta-val">{{ j.location }}</span>
             </div>
             <div class="meta-row">
-              <span class="meta-label">Min Experience</span>
+              <span class="meta-label">{{ 'job.minexp' | t }}</span>
               <span class="meta-val">{{ j.minimumExperience }} Years</span>
             </div>
             <div class="meta-row">
-              <span class="meta-label">Salary Range</span>
+              <span class="meta-label">{{ 'job.salary' | t }}</span>
               <span class="meta-val">${{ j.salaryMin | number }} - ${{ j.salaryMax | number }}</span>
             </div>
           </div>
 
-          <a routerLink="/register" class="btn-sidebar-apply">Apply For This Job</a>
-          <a routerLink="/jobs" class="btn-sidebar-back">View Other Positions</a>
+          <a routerLink="/register" class="btn-sidebar-apply">{{ 'job.applycta' | t }}</a>
+          <a routerLink="/jobs" class="btn-sidebar-back">{{ 'job.others' | t }}</a>
         </div>
       </div>
     </div>

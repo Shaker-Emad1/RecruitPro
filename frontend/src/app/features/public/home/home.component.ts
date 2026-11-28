@@ -4,6 +4,8 @@ import { DecimalPipe } from '@angular/common';
 import { JobService } from '../../../core/services/job.service';
 import { Job, PaginatedResult } from '../../../core/models/api.models';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { TranslatePipe } from '../../../core/i18n/t.pipe';
+import { LangService } from '../../../core/i18n/lang.service';
 
 export interface RadarBlip {
   job: Job;
@@ -16,12 +18,13 @@ export interface RadarBlip {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, DecimalPipe, IconComponent],
+  imports: [RouterLink, DecimalPipe, IconComponent, TranslatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   private jobService = inject(JobService);
+  lang = inject(LangService);
   private router = inject(Router);
 
   featuredJobs = signal<Job[]>([]);
@@ -29,7 +32,7 @@ export class HomeComponent implements OnInit {
   activeBlip = signal<RadarBlip | null>(null);
   openCount = signal(0);
   loading = signal(true);
-  tickerItems = signal<string[]>([]);
+  tickerJobs = signal<Job[]>([]);
 
   ngOnInit(): void {
     this.jobService.getAll(1, 9, '', 'Open').subscribe({
@@ -38,9 +41,7 @@ export class HomeComponent implements OnInit {
         this.featuredJobs.set(jobs.slice(0, 6));
         this.openCount.set(res.totalCount || jobs.length);
         this.blips.set(jobs.map((job, i) => this.toBlip(job, i)));
-        this.tickerItems.set(jobs.slice(0, 6).map(j =>
-          `▲ ${j.title.toUpperCase()} — ${j.location.toUpperCase()} — $${Math.round(j.salaryMin / 1000)}–${Math.round(j.salaryMax / 1000)}K`
-        ));
+        this.tickerJobs.set(jobs.slice(0, 6));
         this.loading.set(false);
       },
       error: () => this.loading.set(false)

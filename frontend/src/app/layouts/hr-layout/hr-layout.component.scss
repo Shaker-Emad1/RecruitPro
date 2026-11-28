@@ -11,7 +11,7 @@
   justify-content: space-between;
   padding: 26px 16px;
   position: fixed;
-  top: 0; bottom: 0; left: 0;
+  top: 0; bottom: 0; inset-inline-start: 0;
   z-index: 100;
   transition: transform var(--transition-fast);
 
@@ -73,7 +73,7 @@
   font-size: 0.88rem;
   font-weight: 500;
   position: relative;
-  border-left: 3px solid transparent;
+  border-inline-start: 3px solid transparent;
 
   .nav-icon { color: #5a6b7e; display: inline-flex; transition: color var(--transition-fast); }
 
@@ -86,7 +86,7 @@
   &--active {
     background: rgba(200, 255, 46, 0.12);
     color: var(--lime);
-    border-left-color: var(--lime);
+    border-inline-start-color: var(--lime);
     .nav-icon { color: var(--lime); }
   }
 }
@@ -138,7 +138,7 @@
   &:hover { border-color: var(--lime); color: var(--lime); }
 }
 
-.main { flex: 1; margin-left: 264px; display: flex; flex-direction: column; min-width: 0; }
+.main { flex: 1; margin-inline-start: 264px; display: flex; flex-direction: column; min-width: 0; }
 
 .topbar {
   height: 64px;
@@ -199,7 +199,7 @@
 @media (max-width: 991px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar--open { transform: translateX(0); }
-  .main { margin-left: 0; }
+  .main { margin-inline-start: 0; }
   .topbar__menu-btn { display: flex; }
   .topbar__brand-mobile { display: block; }
   .content { padding: 20px; }

@@ -1,34 +1,30 @@
 <!-- Live role ticker -->
-<div class="ticker-strip">
-  <span class="ticker-label"><span class="pulse-dot"></span> LIVE</span>
+<div class="ticker-strip" dir="ltr">
+  <span class="ticker-label"><span class="pulse-dot"></span> {{ 'ticker.live' | t }}</span>
   <div class="ticker-items">
-    @for (item of tickerItems(); track $index) { <span>{{ item }}</span> }
-    <span>● {{ openCount() }} OPEN ROLES ON THE BOARD</span>
-    <span>● 37 NEW STRONG MATCHES TODAY</span>
-    @for (item of tickerItems(); track 'dup-' + $index) { <span>{{ item }}</span> }
-    <span>● {{ openCount() }} OPEN ROLES ON THE BOARD</span>
-    <span>● 37 NEW STRONG MATCHES TODAY</span>
+    @for (job of tickerJobs(); track job.id) { <span>▲ {{ job.title.toUpperCase() }} — {{ job.location.toUpperCase() }} — ${{ job.salaryMin / 1000 | number:'1.0-0' }}–{{ job.salaryMax / 1000 | number:'1.0-0' }}K</span> }
+    <span>● {{ openCount() }} {{ 'ticker.open' | t }}</span>
+    <span>● 37 {{ 'ticker.matches' | t }}</span>
+    @for (job of tickerJobs(); track 'dup-' + job.id) { <span>▲ {{ job.title.toUpperCase() }} — {{ job.location.toUpperCase() }} — ${{ job.salaryMin / 1000 | number:'1.0-0' }}–{{ job.salaryMax / 1000 | number:'1.0-0' }}K</span> }
+    <span>● {{ openCount() }} {{ 'ticker.open' | t }}</span>
+    <span>● 37 {{ 'ticker.matches' | t }}</span>
   </div>
 </div>
 
 <!-- Hero + interactive radar -->
 <section class="hero">
   <div class="hero__copy">
-    <div class="kicker mono"><span class="pulse-dot cyan"></span> SIGNAL ACQUIRED — HIRING, LIVE</div>
-    <h1>TUNE IN<br />TO <span class="stroke">TALENT</span><br />SIGNAL<span class="lime-dot">.</span></h1>
-    <p class="sub">
-      RecruitPro turns hiring into a live feed: 1,000 candidates on the radar, every
-      application scored the second it lands, every strong match highlighted on the board.
-      Stop digging. Start receiving.
-    </p>
+    <div class="kicker mono"><span class="pulse-dot cyan"></span> {{ 'home.kicker' | t }}</div>
+    <h1>{{ 'home.h1.a' | t }}<br />{{ 'home.h1.b' | t }} <span class="stroke">{{ 'home.h1.c' | t }}</span><br />{{ 'home.h1.d' | t }}<span class="lime-dot">.</span></h1>
+    <p class="sub">{{ 'home.sub' | t }}</p>
     <div class="cta-row">
-      <a routerLink="/jobs" class="btn-ui-primary">Scan {{ openCount() }} Roles <app-icon name="arrow-right" [size]="15" /></a>
-      <a routerLink="/register" class="btn-ui-outline">Get On The Radar</a>
+      <a routerLink="/jobs" class="btn-ui-primary">{{ ('home.scan' | t).replace('{n}', openCount().toString()) }} <app-icon name="arrow-right" [size]="15" /></a>
+      <a routerLink="/register" class="btn-ui-outline">{{ 'home.radar.cta' | t }}</a>
     </div>
-    <div class="hero-hint mono"><app-icon name="radar" [size]="14" /> Hover a blip to inspect the signal — click to open the role</div>
+    <div class="hero-hint mono"><app-icon name="radar" [size]="14" /> {{ 'home.hint' | t }}</div>
   </div>
 
-  <div class="radar" aria-label="Live roles radar">
+  <div class="radar" dir="ltr" aria-label="Live roles radar">
     <div class="radar__ring r1"></div>
     <div class="radar__ring r2"></div>
     <div class="radar__ring r3"></div>
@@ -38,7 +34,7 @@
     <div class="radar__sweep"></div>
     <div class="radar__center">
       <b>1,000</b>
-      <span class="mono">CANDIDATES<br />ON RADAR</span>
+      <span class="mono">{{ 'home.radar.center' | t }}</span>
     </div>
     @for (blip of blips(); track blip.job.id) {
       <button
@@ -53,7 +49,7 @@
         (focus)="hover(blip.job)"
         (blur)="hover(null)"
         (click)="open(blip.job)"
-        [attr.aria-label]="blip.job.title + ' — open role'"
+        [attr.aria-label]="blip.job.title"
       ></button>
     }
     @if (activeBlip(); as blip) {
@@ -64,7 +60,7 @@
         [class.flip]="blip.x > 55"
       >
         <b>{{ blip.job.title }}</b>
-        <span>{{ blip.job.location }} · {{ blip.confidence }}% MATCH</span>
+        <span>{{ blip.job.location }} · {{ blip.confidence }}% {{ 'home.match' | t }}</span>
         <span class="pay">${{ blip.job.salaryMin | number }} – ${{ blip.job.salaryMax | number }}</span>
       </div>
     }
@@ -72,21 +68,21 @@
 </section>
 
 <!-- Stats band -->
-<section class="stats-band">
-  <div class="stat"><b>1,000</b><span class="mono">Candidates tracked</span><span class="up mono">▲ LIVE</span></div>
-  <div class="stat"><b>500</b><span class="mono">Applications scored</span><span class="up mono">▲ +12 TODAY</span></div>
-  <div class="stat"><b>300</b><span class="mono">Interviews booked</span><span class="up mono">▲ 0 EMAILS</span></div>
-  <div class="stat"><b>48h</b><span class="mono">Median time-to-offer</span><span class="up mono">▲ -6h WK/WK</span></div>
+<section class="stats-band" dir="ltr">
+  <div class="stat"><b>1,000</b><span class="mono">{{ 'home.stats.candidates' | t }}</span><span class="up mono">{{ 'home.stats.live' | t }}</span></div>
+  <div class="stat"><b>500</b><span class="mono">{{ 'home.stats.apps' | t }}</span><span class="up mono">{{ 'home.stats.today' | t }}</span></div>
+  <div class="stat"><b>300</b><span class="mono">{{ 'home.stats.interviews' | t }}</span><span class="up mono">{{ 'home.stats.emails' | t }}</span></div>
+  <div class="stat"><b>48h</b><span class="mono">{{ 'home.stats.tto' | t }}</span><span class="up mono">{{ 'home.stats.wk' | t }}</span></div>
 </section>
 
 <!-- Incoming signals -->
 <section class="signals container">
   <div class="sec-head">
-    <h2 class="sec-title">Incoming signals — open roles</h2>
-    <a routerLink="/jobs" class="link-all mono">ALL ROLES <app-icon name="arrow-right" [size]="14" /></a>
+    <h2 class="sec-title">{{ 'home.signals' | t }}</h2>
+    <a routerLink="/jobs" class="link-all mono">{{ 'home.allroles' | t }} <app-icon name="arrow-right" [size]="14" /></a>
   </div>
   @if (loading()) {
-    <div class="loading mono">SCANNING FREQUENCIES…</div>
+    <div class="loading mono">{{ 'home.loading' | t }}</div>
   } @else {
     <div class="signal-grid">
       @for (job of featuredJobs(); track job.id) {
@@ -100,7 +96,7 @@
           <span class="pulse-dot"></span>
           <div class="dept mono">{{ job.department }} · {{ job.location }}</div>
           <h3>{{ job.title }}</h3>
-          <div class="meta">Full-time · {{ confidence(job) }}% fill confidence</div>
+          <div class="meta">{{ 'home.fulltime' | t }} · {{ confidence(job) }}% {{ 'home.fill' | t }}</div>
           <div class="pay mono">${{ job.salaryMin | number }} – ${{ job.salaryMax | number }}</div>
         </a>
       }
@@ -111,40 +107,36 @@
 <!-- Transmission: the hiring floor -->
 <section class="transmission container">
   <div class="transmission__media">
-    <img src="img/hiring-floor.jpg" alt="The hiring floor at RecruitPro" />
-    <div class="frame-tag mono">FEED 01 — HIRING_FLOOR · SIGNAL LOCKED</div>
+    <img src="img/hiring-floor.jpg" alt="RecruitPro hiring floor" />
+    <div class="frame-tag mono" dir="ltr">FEED 01 — HIRING_FLOOR · SIGNAL LOCKED</div>
   </div>
   <div class="transmission__copy">
-    <h2 class="sec-title">The board never sleeps</h2>
-    <p>
-      Every resume is parsed, deduplicated and scored the moment it arrives. Recruiters watch
-      one live board instead of twelve inboxes — weak matches fade to static, strong ones
-      light up and get a same-day answer.
-    </p>
+    <h2 class="sec-title">{{ 'home.board.title' | t }}</h2>
+    <p>{{ 'home.board.p' | t }}</p>
     <ul class="check-list">
-      <li><app-icon name="check" [size]="16" /> Instant scoring on every application</li>
-      <li><app-icon name="check" [size]="16" /> Interviews scheduled without email chains</li>
-      <li><app-icon name="check" [size]="16" /> Offers out in a median 48 hours</li>
+      <li><app-icon name="check" [size]="16" /> {{ 'home.board.l1' | t }}</li>
+      <li><app-icon name="check" [size]="16" /> {{ 'home.board.l2' | t }}</li>
+      <li><app-icon name="check" [size]="16" /> {{ 'home.board.l3' | t }}</li>
     </ul>
-    <a routerLink="/about" class="btn-ui-dark">How the signal works <app-icon name="arrow-right" [size]="15" /></a>
+    <a routerLink="/about" class="btn-ui-dark">{{ 'home.board.cta' | t }} <app-icon name="arrow-right" [size]="15" /></a>
   </div>
 </section>
 
 <!-- Recently acquired -->
 <section class="hired container">
-  <h2 class="sec-title">Recently acquired — new hires</h2>
+  <h2 class="sec-title">{{ 'home.hired' | t }}</h2>
   <div class="hired-grid">
     <div class="hired-card">
       <img src="img/hired-1.jpg" alt="Sarah Mansour" />
-      <div class="tag mono"><b>HIRED</b> · HEAD OF HR · 11 DAYS</div>
+      <div class="tag mono" dir="ltr"><b>HIRED</b> · HEAD OF HR · 11 DAYS</div>
     </div>
     <div class="hired-card">
       <img src="img/hired-2.jpg" alt="Omar Adel" />
-      <div class="tag mono"><b>HIRED</b> · STAFF ENGINEER · 6 DAYS</div>
+      <div class="tag mono" dir="ltr"><b>HIRED</b> · STAFF ENGINEER · 6 DAYS</div>
     </div>
     <div class="hired-card">
       <img src="img/hired-3.jpg" alt="Laila Hassan" />
-      <div class="tag mono"><b>HIRED</b> · UX LEAD · 9 DAYS</div>
+      <div class="tag mono" dir="ltr"><b>HIRED</b> · UX LEAD · 9 DAYS</div>
     </div>
   </div>
 </section>
@@ -152,10 +144,10 @@
 <!-- CTA band -->
 <section class="cta-band">
   <div class="container cta-band__inner">
-    <h2>READY TO<br /><span class="stroke-lime">TRANSMIT?</span></h2>
+    <h2>{{ 'home.cta.a' | t }}<br /><span class="stroke-lime">{{ 'home.cta.b' | t }}</span></h2>
     <div class="cta-band__actions">
-      <a routerLink="/register" class="btn-ui-primary">Create Candidate Profile</a>
-      <a routerLink="/login" class="btn-ui-ghost-light">Sign In</a>
+      <a routerLink="/register" class="btn-ui-primary">{{ 'home.cta.profile' | t }}</a>
+      <a routerLink="/login" class="btn-ui-ghost-light">{{ 'nav.signin' | t }}</a>
     </div>
   </div>
 </section>

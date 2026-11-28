@@ -320,3 +320,25 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 5px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--lime-strong); }
+
+/* ── Arabic / RTL (Signal Light bilingual) ─────────────────── */
+body.font-ar {
+  font-family: "IBM Plex Sans Arabic", "Space Grotesk", system-ui, sans-serif;
+
+  h1, h2, h3, .display-font {
+    font-family: "IBM Plex Sans Arabic", "Space Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .sec-title { letter-spacing: 0; font-weight: 700; }
+  .mono, .ticker-strip, .btn-ui-primary, .btn-ui-outline, .btn-ui-dark,
+  .btn-login, .btn-register, .btn-dashboard, .badge-ui {
+    font-family: "IBM Plex Sans Arabic", "Space Grotesk", sans-serif;
+    letter-spacing: 0;
+  }
+}
+
+[dir="rtl"] {
+  .ticker-label { left: auto; right: 0; }
+  .ticker-items { margin-left: 0; margin-right: 110px; }
+}

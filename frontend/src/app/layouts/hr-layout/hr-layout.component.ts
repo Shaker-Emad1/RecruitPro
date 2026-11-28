@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { IconComponent } from '../../shared/components/icon/icon.component';
+import { TranslatePipe } from '../../core/i18n/t.pipe';
 
 interface NavItem {
   path: string;
@@ -12,7 +13,7 @@ interface NavItem {
 @Component({
   selector: 'app-hr-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, IconComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, IconComponent, TranslatePipe],
   templateUrl: './hr-layout.component.html',
   styleUrl: './hr-layout.component.scss',
 })
@@ -21,12 +22,12 @@ export class HrLayoutComponent {
   sidebarOpen = signal(false);
 
   readonly navItems: NavItem[] = [
-    { path: '/hr/dashboard',      label: 'Overview',      icon: 'grid' },
-    { path: '/hr/candidates',     label: 'Candidates',    icon: 'user' },
-    { path: '/hr/jobs',           label: 'Job Postings',  icon: 'briefcase' },
-    { path: '/hr/applications',   label: 'Applications',  icon: 'file-text' },
-    { path: '/hr/interviews',     label: 'Interviews',    icon: 'calendar' },
-    { path: '/hr/analytics',      label: 'Analytics',     icon: 'bar-chart' },
+    { path: '/hr/dashboard',      label: 'side.overview',      icon: 'grid' },
+    { path: '/hr/candidates',     label: 'side.candidates',    icon: 'user' },
+    { path: '/hr/jobs',           label: 'side.jobs',  icon: 'briefcase' },
+    { path: '/hr/applications',   label: 'side.applications',  icon: 'file-text' },
+    { path: '/hr/interviews',     label: 'side.interviews',    icon: 'calendar' },
+    { path: '/hr/analytics',      label: 'side.analytics',     icon: 'bar-chart' },
   ];
 
   toggleSidebar(): void {

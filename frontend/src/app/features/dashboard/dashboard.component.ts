@@ -4,10 +4,11 @@ import { AnalyticsService } from '../../core/services/analytics.service';
 import { DashboardAnalytics, MonthlyTrend } from '../../core/models/api.models';
 import { StatCardComponent } from '../../shared/components/stat-card/stat-card.component';
 import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { TranslatePipe } from '../../core/i18n/t.pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, StatCardComponent, PageHeaderComponent],
+  imports: [RouterLink, StatCardComponent, PageHeaderComponent, TranslatePipe ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -31,9 +32,9 @@ export class DashboardComponent implements OnInit {
     const a = this.analytics();
     if (!a) return [];
     return [
-      { label: 'Qualified',   count: a.qualifiedCandidates,  total: a.totalCandidates },
-      { label: 'Rejected',    count: a.rejectedCandidates,   total: a.totalCandidates },
-      { label: 'Interviews',  count: a.interviewsScheduled,  total: a.totalCandidates },
+      { label: 'dash.stage.qualified',   count: a.qualifiedCandidates,  total: a.totalCandidates },
+      { label: 'dash.stage.rejected',    count: a.rejectedCandidates,   total: a.totalCandidates },
+      { label: 'dash.stage.interviews',  count: a.interviewsScheduled,  total: a.totalCandidates },
     ];
   }
 

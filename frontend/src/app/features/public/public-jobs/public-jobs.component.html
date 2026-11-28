@@ -1,8 +1,8 @@
 <div class="page-hero text-center">
   <div class="container">
-    <span class="eyebrow">Career Opportunities</span>
-    <h1 class="page-title">Explore Open Roles</h1>
-    <p class="page-lead">Find your next high-impact engineering position in high-growth technology teams.</p>
+    <span class="eyebrow">{{ 'jobs.kicker' | t }}</span>
+    <h1 class="page-title">{{ 'jobs.title' | t }}</h1>
+    <p class="page-lead">{{ 'jobs.sub' | t }}</p>
   </div>
 </div>
 
@@ -17,14 +17,14 @@
           type="text"
           [(ngModel)]="searchQuery"
           (ngModelChange)="onSearch($event)"
-          placeholder="Search by job title, skill, or keyword..."
+          placeholder="{{ 'jobs.search' | t }}"
           class="search-input"
         />
       </div>
 
       <div class="filter-select-wrap">
         <select [(ngModel)]="selectedDepartment" (ngModelChange)="onDepartmentChange($event)" class="filter-select">
-          <option value="">All Departments</option>
+          <option value="">{{ 'jobs.alldept' | t }}</option>
           @for (d of departments; track d) {
             <option [value]="d">{{ d }}</option>
           }
@@ -36,7 +36,7 @@
     @if (loading()) {
       <div class="text-center py-5">
         <div class="spinner-border text-primary" role="status"></div>
-        <p class="mt-2 text-muted">Searching available positions...</p>
+        <p class="mt-2 text-muted">{{ 'jobs.searching' | t }}</p>
       </div>
     } @else {
       <div class="jobs-grid">
@@ -53,7 +53,7 @@
             <div class="job-meta">
               <span><app-icon name="map-pin" [size]="16" /> {{ job.location }}</span>
               <span><app-icon name="briefcase" [size]="16" /> Full-Time</span>
-              <span><app-icon name="award" [size]="16" /> {{ job.minimumExperience }}+ yrs exp</span>
+              <span><app-icon name="award" [size]="16" /> {{ job.minimumExperience }}+ {{ 'jobs.yrs' | t }}</span>
               <span><app-icon name="calendar" [size]="16" /> {{ job.createdAt | date:'mediumDate' }}</span>
             </div>
 
@@ -61,14 +61,14 @@
 
             <div class="job-card__foot">
               <span class="job-salary">{{ job.salaryMin | currency:'USD':'symbol':'1.0-0' }} - {{ job.salaryMax | currency:'USD':'symbol':'1.0-0' }}</span>
-              <a [routerLink]="['/jobs', job.id]" class="btn-apply">View & Apply →</a>
+              <a [routerLink]="['/jobs', job.id]" class="btn-apply">{{ 'jobs.view' | t }} ←</a>
             </div>
           </div>
         } @empty {
           <div class="empty-state text-center py-5">
             <div class="empty-icon"><app-icon name="search" [size]="16" /></div>
-            <h3>No matching jobs found</h3>
-            <p class="text-muted">Try adjusting your search criteria or clearing department filters.</p>
+            <h3>{{ 'jobs.empty.title' | t }}</h3>
+            <p class="text-muted">{{ 'jobs.empty.sub' | t }}</p>
           </div>
         }
       </div>
@@ -76,9 +76,9 @@
       <!-- Pagination -->
       @if (totalPages > 1) {
         <div class="pagination-wrap">
-          <button class="btn-page" [disabled]="currentPage() === 1" (click)="changePage(currentPage() - 1)">Previous</button>
-          <span class="page-info">Page {{ currentPage() }} of {{ totalPages }}</span>
-          <button class="btn-page" [disabled]="currentPage() === totalPages" (click)="changePage(currentPage() + 1)">Next</button>
+          <button class="btn-page" [disabled]="currentPage() === 1" (click)="changePage(currentPage() - 1)">{{ 'common.prev' | t }}</button>
+          <span class="page-info">{{ 'common.page' | t }} {{ currentPage() }} {{ 'common.of' | t }} {{ totalPages }}</span>
+          <button class="btn-page" [disabled]="currentPage() === totalPages" (click)="changePage(currentPage() + 1)">{{ 'common.next' | t }}</button>
         </div>
       }
     }

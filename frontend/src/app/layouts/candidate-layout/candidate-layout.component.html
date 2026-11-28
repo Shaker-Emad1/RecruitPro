@@ -3,24 +3,25 @@
     <div class="topbar-inner">
       <a routerLink="/candidate/dashboard" class="brand">
         <span class="brand-icon"><app-icon name="radar" [size]="20" [stroke]="2.2" /></span>
-        <span class="brand-name">RecruitPro<span class="lime">_</span><span class="brand-tag mono">Candidate</span></span>
+        <span class="brand-name">RecruitPro<span class="lime">_</span><span class="brand-tag mono">{{ 'cand.role' | t }}</span></span>
       </a>
 
       <nav class="candidate-nav">
-        <a routerLink="/candidate/dashboard" routerLinkActive="active">Overview</a>
-        <a routerLink="/candidate/applications" routerLinkActive="active">My Applications</a>
-        <a routerLink="/candidate/interviews" routerLinkActive="active">Interviews</a>
-        <a routerLink="/candidate/profile" routerLinkActive="active">Profile & Resume</a>
-        <a routerLink="/candidate/settings" routerLinkActive="active">Settings</a>
-        <a routerLink="/jobs" class="nav-jobs-btn"><app-icon name="search" [size]="15" /> Explore Jobs</a>
+        <a routerLink="/candidate/dashboard" routerLinkActive="active">{{ 'cand.overview' | t }}</a>
+        <a routerLink="/candidate/applications" routerLinkActive="active">{{ 'cand.apps' | t }}</a>
+        <a routerLink="/candidate/interviews" routerLinkActive="active">{{ 'cand.interviews' | t }}</a>
+        <a routerLink="/candidate/profile" routerLinkActive="active">{{ 'cand.profile' | t }}</a>
+        <a routerLink="/candidate/settings" routerLinkActive="active">{{ 'cand.settings' | t }}</a>
+        <a routerLink="/jobs" class="nav-jobs-btn"><app-icon name="search" [size]="15" /> {{ 'cand.explore' | t }}</a>
       </nav>
 
       <div class="user-actions">
+        <button type="button" class="btn-logout" (click)="lang.toggle()"><app-icon name="globe" [size]="15" /> {{ lang.lang() === 'ar' ? 'EN' : 'عربي' }}</button>
         <div class="user-profile">
           <span class="user-name">{{ auth.userDisplayName() || 'Candidate' }}</span>
-          <span class="user-role mono">Candidate</span>
+          <span class="user-role mono">{{ 'cand.role' | t }}</span>
         </div>
-        <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> Logout</button>
+        <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> {{ 'cand.logout' | t }}</button>
       </div>
     </div>
   </header>

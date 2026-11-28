@@ -3,7 +3,7 @@
     <div class="container public-header__inner">
       <a routerLink="/" class="brand-logo">
         <span class="brand-logo__icon"><app-icon name="radar" [size]="19" [stroke]="2.2" /></span>
-        <span class="brand-logo__text">RecruitPro<span class="lime">_</span></span>
+        <span class="brand-logo__text" dir="ltr">RecruitPro<span class="lime">_</span></span>
       </a>
 
       <button class="mobile-toggle" (click)="toggleMenu()" aria-label="Toggle navigation">
@@ -11,19 +11,22 @@
       </button>
 
       <nav class="public-nav" [class.is-open]="isMenuOpen">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">Home</a>
-        <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">About</a>
-        <a routerLink="/careers" routerLinkActive="active" (click)="isMenuOpen = false">Careers</a>
-        <a routerLink="/jobs" routerLinkActive="active" (click)="isMenuOpen = false">Explore Jobs</a>
-        <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">Contact</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">{{ 'nav.home' | t }}</a>
+        <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">{{ 'nav.about' | t }}</a>
+        <a routerLink="/careers" routerLinkActive="active" (click)="isMenuOpen = false">{{ 'nav.careers' | t }}</a>
+        <a routerLink="/jobs" routerLinkActive="active" (click)="isMenuOpen = false">{{ 'nav.jobs' | t }}</a>
+        <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">{{ 'nav.contact' | t }}</a>
       </nav>
 
       <div class="header-actions">
+        <button type="button" class="lang-switch mono" (click)="lang.toggle()" [attr.aria-label]="'Switch language'">
+          <app-icon name="globe" [size]="15" /> {{ lang.lang() === 'ar' ? 'EN' : 'عربي' }}
+        </button>
         @if (auth.isAuthenticated()) {
-          <a routerLink="/dashboard" class="btn-dashboard"><app-icon name="grid" [size]="15" /> Go to Portal</a>
+          <a routerLink="/dashboard" class="btn-dashboard"><app-icon name="grid" [size]="15" /> {{ 'nav.portal' | t }}</a>
         } @else {
-          <a routerLink="/login" class="btn-login">Sign In</a>
-          <a routerLink="/register" class="btn-register">Apply Now</a>
+          <a routerLink="/login" class="btn-login">{{ 'nav.signin' | t }}</a>
+          <a routerLink="/register" class="btn-register">{{ 'nav.apply' | t }}</a>
         }
       </div>
     </div>
@@ -39,28 +42,27 @@
         <div class="footer-brand">
           <div class="brand-logo mb-3">
             <span class="brand-logo__icon"><app-icon name="radar" [size]="19" [stroke]="2.2" /></span>
-            <span class="brand-logo__text">RecruitPro<span class="lime">_</span></span>
+            <span class="brand-logo__text" dir="ltr">RecruitPro<span class="lime">_</span></span>
           </div>
           <p class="footer-desc">
-            Hiring as a live signal: every candidate on the radar, every application scored
-            the second it lands, every strong match lit up on the board.
+            {{ 'footer.desc' | t }}
           </p>
-          <div class="footer-status mono"><span class="pulse-dot"></span> ALL CHANNELS OPEN · UPTIME 99.98%</div>
+          <div class="footer-status mono"><span class="pulse-dot"></span> {{ 'footer.status' | t }}</div>
         </div>
 
         <div class="footer-col">
-          <h6>// Navigation</h6>
+          <h6>{{ 'footer.nav' | t }}</h6>
           <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/about">About Us</a></li>
-            <li><a routerLink="/careers">Careers</a></li>
-            <li><a routerLink="/jobs">Browse Jobs</a></li>
-            <li><a routerLink="/contact">Contact Support</a></li>
+            <li><a routerLink="/">{{ 'nav.home' | t }}</a></li>
+            <li><a routerLink="/about">{{ 'nav.about' | t }}</a></li>
+            <li><a routerLink="/careers">{{ 'nav.careers' | t }}</a></li>
+            <li><a routerLink="/jobs">{{ 'nav.jobs' | t }}</a></li>
+            <li><a routerLink="/contact">{{ 'nav.contact' | t }}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h6>// Signals</h6>
+          <h6>{{ 'footer.signals' | t }}</h6>
           <ul>
             <li><a routerLink="/jobs">Executive Hiring</a></li>
             <li><a routerLink="/jobs">Technical Assessment</a></li>
@@ -70,21 +72,21 @@
         </div>
 
         <div class="footer-col">
-          <h6>// Stay Tuned</h6>
-          <p class="footer-small">Subscribe to our quarterly HR intelligence dispatch.</p>
+          <h6>{{ 'footer.tuned' | t }}</h6>
+          <p class="footer-small">{{ 'footer.news' | t }}</p>
           <div class="newsletter-form">
-            <input type="email" placeholder="Enter work email" class="newsletter-input" />
-            <button class="btn-subscribe">Join</button>
+            <input type="email" placeholder="{{ 'footer.email' | t }}" class="newsletter-input" />
+            <button class="btn-subscribe">{{ 'footer.join' | t }}</button>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p class="mono">RECRUITPRO_SIGNAL // BROADCASTING SINCE 2026</p>
+        <p class="mono">{{ 'footer.copy' | t }}</p>
         <div class="footer-links">
-          <a routerLink="/contact">Privacy Policy</a>
-          <a routerLink="/contact">Terms of Service</a>
-          <a routerLink="/contact">Security</a>
+          <a routerLink="/contact">{{ 'footer.privacy' | t }}</a>
+          <a routerLink="/contact">{{ 'footer.terms' | t }}</a>
+          <a routerLink="/contact">{{ 'footer.security' | t }}</a>
         </div>
       </div>
     </div>
