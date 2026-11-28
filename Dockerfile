@@ -3,12 +3,11 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
-# Node 22 for the Angular build, inside the same stage
-RUN apt-get update \
- && apt-get install -y curl \
- && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
- && apt-get install -y nodejs \
- && rm -rf /var/lib/apt/lists/*
+# Node 22 (official binary, matches the builder architecture) for the Angular build
+RUN arch=$(dpkg --print-architecture) \
+ && case "$arch" in amd64) n=x64 ;; arm64) n=arm64 ;; *) echo "unsupported arch $arch" && exit 1 ;; esac \
+ && curl -fsSL https://nodejs.org/dist/v22.14.0/node-v22.14.0-linux-$n.tar.gz | tar -xz -C /usr/local --strip-components=1 \
+ && node --version && npm --version
 
 # Frontend
 WORKDIR /web
