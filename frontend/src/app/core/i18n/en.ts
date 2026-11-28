@@ -24,7 +24,7 @@ export const EN: Record<string, string> = {
   'ticker.live': 'LIVE', 'ticker.open': 'OPEN ROLES ON THE BOARD', 'ticker.matches': 'NEW STRONG MATCHES TODAY',
   'jobs.title': 'EXPLORE OPEN ROLES', 'jobs.kicker': 'CAREER OPPORTUNITIES',
   'jobs.sub': 'Find your next high-impact engineering position in high-growth technology teams.',
-  'jobs.search': 'Search by job title, skill, or keyword…', 'jobs.alldepts': 'All Departments',
+  'jobs.search': 'Search by job title, skill, or keyword…', 'jobs.alldepts': 'All Departments', 'jobs.alldept': 'All Departments',
   'jobs.open': 'Open', 'jobs.apply': 'View & Apply', 'jobs.yrs': 'yrs exp', 'jobs.page': 'Page', 'jobs.of': 'of', 'jobs.prev': 'Previous', 'jobs.next': 'Next',
   'jobs.posted': 'Posted', 'jobs.empty': 'No roles match your filters',
   'job.back': 'Back to all roles', 'job.apply': 'Apply Now', 'job.about': 'About this role', 'job.reqs': 'Requirements', 'job.skills': 'Required skills',
