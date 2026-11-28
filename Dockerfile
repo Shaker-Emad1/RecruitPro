@@ -35,7 +35,5 @@ COPY --from=build /app/publish .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
-# Demo default so the container boots on a free host without extra config.
-# Override with your own Jwt__Key env var for anything real.
-ENV Jwt__Key=d3c8fb518e54b9706db78f99dc3e3322d636d4d6419bae97a13473dbc1a228dc
+# Jwt__Key must be provided as a runtime env var; the app refuses to boot without it.
 ENTRYPOINT ["dotnet", "RecruitPro.API.dll"]
