@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { TranslatePipe } from '../../../core/i18n/t.pipe';
 
 @Component({
   selector: 'app-careers',
   standalone: true,
-  imports: [RouterLink, IconComponent ],
+  imports: [RouterLink, IconComponent, TranslatePipe ],
   templateUrl: './careers.component.html',
   styleUrl: './careers.component.scss'
 })
 export class CareersComponent {
   departments = [
-    { name: 'Engineering', count: '12 open positions', desc: 'Build scalable .NET 10 APIs, Angular 20 interfaces, and distributed systems.' },
-    { name: 'Product & Design', count: '5 open positions', desc: 'Craft high-converting candidate portals and intuitive HR workflows.' },
-    { name: 'Data Science & AI', count: '3 open positions', desc: 'Train predictive scoring models and matching engines.' },
-    { name: 'DevOps & Security', count: '4 open positions', desc: 'Maintain zero-trust infrastructure, Docker orchestration, and CI/CD pipelines.' },
+    { name: 'careers.d1.name', count: 'careers.d1.count', desc: 'careers.d1.desc' },
+    { name: 'careers.d2.name', count: 'careers.d2.count', desc: 'careers.d2.desc' },
+    { name: 'careers.d3.name', count: 'careers.d3.count', desc: 'careers.d3.desc' },
+    { name: 'careers.d4.name', count: 'careers.d4.count', desc: 'careers.d4.desc' },
   ];
 
   benefits = [
-    { title: 'Remote & Hybrid Flexibility', desc: 'Work from where you perform best with flexible core hours.' },
-    { title: 'Continuous Growth Budget', desc: '$3,000 annual stipend for conferences, courses, and technical certifications.' },
-    { title: 'Comprehensive Health & Wellness', desc: 'Top-tier medical, dental, vision, and mental health coverage.' },
-    { title: 'Competitive Compensation', desc: 'Industry-leading base salary with performance bonuses and equity option grants.' }
+    { title: 'careers.b1.t', desc: 'careers.b1.d' },
+    { title: 'careers.b2.t', desc: 'careers.b2.d' },
+    { title: 'careers.b3.t', desc: 'careers.b3.d' },
+    { title: 'careers.b4.t', desc: 'careers.b4.d' },
   ];
 }

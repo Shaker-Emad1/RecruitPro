@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { TranslatePipe } from '../../../core/i18n/t.pipe';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, IconComponent ],
+  imports: [ReactiveFormsModule, RouterLink, IconComponent, TranslatePipe ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

@@ -2,22 +2,22 @@
   <div class="register-card">
 
     <div class="register-card__hero">
-      <span class="hero-eyebrow">Candidate Access</span>
-      <h1 class="hero-title">Start Your Career Journey With RecruitPro</h1>
+      <span class="hero-eyebrow">{{ 'reg.kicker' | t }}</span>
+      <h1 class="hero-title">{{ 'reg.title' | t }}</h1>
       <p class="hero-desc">
-        Create your candidate profile, upload your resume, track job application statuses, and interview directly with engineering managers.
+        {{ 'reg.desc' | t }}
       </p>
       <ul class="hero-features">
-        <li><app-icon name="zap" [size]="16" /> Seamless 1-click application tracking</li>
-        <li><app-icon name="layers" [size]="16" /> Secure PDF/DOCX resume file management</li>
-        <li><app-icon name="calendar" [size]="16" /> Direct Google Meet interview scheduling</li>
+        <li><app-icon name="zap" [size]="16" /> {{ 'reg.f1' | t }}</li>
+        <li><app-icon name="layers" [size]="16" /> {{ 'reg.f2' | t }}</li>
+        <li><app-icon name="calendar" [size]="16" /> {{ 'reg.f3' | t }}</li>
       </ul>
     </div>
 
     <div class="register-card__form">
-      <p class="form-eyebrow">Create Profile</p>
-      <h2 class="form-title">Candidate Registration</h2>
-      <p class="form-subtitle">Fill in your information to start applying for open roles.</p>
+      <p class="form-eyebrow">{{ 'reg.form.kicker' | t }}</p>
+      <h2 class="form-title">{{ 'reg.form.title' | t }}</h2>
+      <p class="form-subtitle">{{ 'reg.form.sub' | t }}</p>
 
       @if (error()) {
         <div class="alert alert-danger" role="alert">{{ error() }}</div>
@@ -26,32 +26,32 @@
       <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
         <div class="row g-3">
           <div class="col-6">
-            <label class="field-label">First Name</label>
+            <label class="field-label">{{ 'reg.first' | t }}</label>
             <input type="text" formControlName="firstName" class="field-input" placeholder="Sarah" />
           </div>
 
           <div class="col-6">
-            <label class="field-label">Last Name</label>
+            <label class="field-label">{{ 'reg.last' | t }}</label>
             <input type="text" formControlName="lastName" class="field-input" placeholder="Connor" />
           </div>
         </div>
 
         <div class="field mt-3">
-          <label class="field-label">Work Email</label>
+          <label class="field-label">{{ 'reg.email' | t }}</label>
           <input type="email" formControlName="email" class="field-input" placeholder="sarah@example.com" />
         </div>
 
         <div class="field mt-3">
-          <label class="field-label">Password</label>
+          <label class="field-label">{{ 'reg.password' | t }}</label>
           <input type="password" formControlName="password" class="field-input" placeholder="••••••••" />
         </div>
 
         <button type="submit" class="btn-submit mt-4" [disabled]="form.invalid || submitting()">
-          {{ submitting() ? 'Creating Profile...' : 'Register Account →' }}
+          {{ submitting() ? ('reg.submitting' | t) : ('reg.submit' | t) }} ←
         </button>
 
         <p class="login-link text-center mt-3">
-          Already have an account? <a routerLink="/login">Sign In here</a>
+          {{ 'reg.have' | t }} <a routerLink="/login">{{ 'reg.signin' | t }}</a>
         </p>
       </form>
     </div>

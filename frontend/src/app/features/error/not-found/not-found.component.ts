@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/t.pipe';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   template: `
     <div class="error-container">
       <div class="card-ui error-card text-center">
         <div class="error-code">404</div>
-        <h1 class="error-title">Page Not Found</h1>
-        <p class="error-message">The requested page or route does not exist or may have been moved.</p>
+        <h1 class="error-title">{{ 'nf.title' | t }}</h1>
+        <p class="error-message">{{ 'nf.msg' | t }}</p>
         <div class="d-flex justify-content-center gap-3 mt-4">
-          <a routerLink="/" class="btn-ui-primary">Back to Homepage</a>
+          <a routerLink="/" class="btn-ui-primary">{{ 'nf.back' | t }}</a>
         </div>
       </div>
     </div>

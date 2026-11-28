@@ -1,8 +1,8 @@
 <div class="page-hero text-center">
   <div class="container">
-    <span class="eyebrow">Get In Touch</span>
-    <h1 class="page-title">Contact Our Recruitment & Support Team</h1>
-    <p class="page-lead">Have questions regarding open positions, application processes, or partnership opportunities?</p>
+    <span class="eyebrow">{{ 'contact.kicker' | t }}</span>
+    <h1 class="page-title">{{ 'contact.title' | t }}</h1>
+    <p class="page-lead">{{ 'contact.lead' | t }}</p>
   </div>
 </div>
 
@@ -12,30 +12,30 @@
 
       <!-- Form Side -->
       <div class="contact-form-card">
-        <h2>Send Us A Message</h2>
+        <h2>{{ 'contact.form.title' | t }}</h2>
         <form [formGroup]="form" (ngSubmit)="submitForm()" class="form">
           <div class="field">
-            <label class="field-label">Full Name</label>
+            <label class="field-label">{{ 'contact.name' | t }}</label>
             <input type="text" formControlName="fullName" placeholder="Sarah Connor" class="field-input" />
           </div>
 
           <div class="field">
-            <label class="field-label">Work Email</label>
+            <label class="field-label">{{ 'contact.email' | t }}</label>
             <input type="email" formControlName="email" placeholder="sarah@example.com" class="field-input" />
           </div>
 
           <div class="field">
-            <label class="field-label">Subject</label>
+            <label class="field-label">{{ 'contact.subject' | t }}</label>
             <input type="text" formControlName="subject" placeholder="Inquiry regarding Engineering roles" class="field-input" />
           </div>
 
           <div class="field">
-            <label class="field-label">Message</label>
+            <label class="field-label">{{ 'contact.message' | t }}</label>
             <textarea formControlName="message" rows="4" placeholder="How can we assist you?" class="field-input"></textarea>
           </div>
 
           <button type="submit" class="btn-submit" [disabled]="form.invalid || submitting()">
-            {{ submitting() ? 'Sending Message...' : 'Send Message →' }}
+            {{ submitting() ? ('contact.sending' | t) : ('contact.send' | t) }} ←
           </button>
         </form>
       </div>
@@ -44,20 +44,20 @@
       <div class="office-info-side">
         <div class="info-card">
           <div class="icon"><app-icon name="map-pin" [size]="16" /></div>
-          <h3>Global Headquarters</h3>
+          <h3>{{ 'contact.hq' | t }}</h3>
           <p>100 Innovation Way, Suite 400<br>San Francisco, CA 94105</p>
         </div>
 
         <div class="info-card">
           <div class="icon"><app-icon name="mail" [size]="16" /></div>
-          <h3>Direct Contact</h3>
-          <p>Support: support&#64;recruitpro.com<br>Recruitment: talent&#64;recruitpro.com</p>
+          <h3>{{ 'contact.direct' | t }}</h3>
+          <p>{{ 'contact.support' | t }}: support&#64;recruitpro.com<br>{{ 'contact.recruitment' | t }}: talent&#64;recruitpro.com</p>
         </div>
 
         <div class="info-card">
           <div class="icon"><app-icon name="clock" [size]="16" /></div>
-          <h3>Office Hours</h3>
-          <p>Monday – Friday: 8:00 AM – 6:00 PM PST<br>Weekend: Closed</p>
+          <h3>{{ 'contact.hours' | t }}</h3>
+          <p>{{ 'contact.hours.p' | t }}<br>{{ 'contact.weekend' | t }}</p>
         </div>
       </div>
 

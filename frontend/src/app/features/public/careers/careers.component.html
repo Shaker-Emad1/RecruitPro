@@ -1,9 +1,9 @@
 <div class="page-hero text-center">
   <div class="container">
-    <span class="eyebrow">Join Our Team</span>
-    <h1 class="page-title">Work On Products That Shape The Future Of Hiring</h1>
+    <span class="eyebrow">{{ 'careers.kicker' | t }}</span>
+    <h1 class="page-title">{{ 'careers.title' | t }}</h1>
     <p class="page-lead">
-      Discover an empowering engineering culture, world-class benefits, and direct impact on high-growth technology solutions.
+      {{ 'careers.lead' | t }}
     </p>
   </div>
 </div>
@@ -12,16 +12,16 @@
 <section class="section">
   <div class="container">
     <div class="section-header text-center">
-      <span class="eyebrow">Perks & Benefits</span>
-      <h2>Why You'll Love Working With Us</h2>
+      <span class="eyebrow">{{ 'careers.perks.kicker' | t }}</span>
+      <h2>{{ 'careers.perks.title' | t }}</h2>
     </div>
 
     <div class="benefits-grid">
       @for (b of benefits; track b.title) {
         <div class="benefit-card">
           <div class="icon"><app-icon name="star" [size]="16" /></div>
-          <h3>{{ b.title }}</h3>
-          <p>{{ b.desc }}</p>
+          <h3>{{ b.title | t }}</h3>
+          <p>{{ b.desc | t }}</p>
         </div>
       }
     </div>
@@ -33,15 +33,15 @@
   <div class="container">
     <div class="culture-wrap">
       <div class="culture-text">
-        <span class="eyebrow">Engineering Culture</span>
-        <h2>High Autonomy, Clean Code, Clear Impact</h2>
+        <span class="eyebrow">{{ 'careers.culture.kicker' | t }}</span>
+        <h2>{{ 'careers.culture.title' | t }}</h2>
         <p>
-          We foster an inclusive culture where ownership, architectural rigor, and open communication thrive. Our engineers pair-program, write clean maintainable code, and iterate rapidly.
+          {{ 'careers.culture.p' | t }}
         </p>
         <ul class="culture-list">
-          <li>✓ Modern Tech Stack (C# 13, ASP.NET Core 10, Angular 20)</li>
-          <li>✓ Asynchronous first communication</li>
-          <li>✓ Direct involvement in system design and architecture</li>
+          <li>✓ {{ 'careers.culture.l1' | t }}</li>
+          <li>✓ {{ 'careers.culture.l2' | t }}</li>
+          <li>✓ {{ 'careers.culture.l3' | t }}</li>
         </ul>
       </div>
     </div>
@@ -52,19 +52,19 @@
 <section class="section">
   <div class="container">
     <div class="section-header text-center">
-      <span class="eyebrow">Explore Departments</span>
-      <h2>Find Your Next Role</h2>
+      <span class="eyebrow">{{ 'careers.dept.kicker' | t }}</span>
+      <h2>{{ 'careers.dept.title' | t }}</h2>
     </div>
 
     <div class="departments-grid">
       @for (dept of departments; track dept.name) {
         <div class="dept-card">
           <div class="dept-header">
-            <h3>{{ dept.name }}</h3>
-            <span class="badge-dept">{{ dept.count }}</span>
+            <h3>{{ dept.name | t }}</h3>
+            <span class="badge-dept">{{ dept.count | t }}</span>
           </div>
-          <p>{{ dept.desc }}</p>
-          <a routerLink="/jobs" class="btn-dept-link">View Department Jobs →</a>
+          <p>{{ dept.desc | t }}</p>
+          <a routerLink="/jobs" class="btn-dept-link">{{ 'careers.dept.view' | t }} ←</a>
         </div>
       }
     </div>

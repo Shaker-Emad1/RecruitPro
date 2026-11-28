@@ -15,8 +15,9 @@ A high-performance Enterprise Recruitment Management System built with **ASP.NET
 
 ### Frontend
 - **Framework**: Angular 20 (Standalone Components, Signals, RxJS, Reactive Forms)
-- **Styling**: Vanilla SCSS Design System, Angular Material & Bootstrap 5 Grid
+- **Styling**: Vanilla SCSS Design System ("Signal Light"), Angular Material & Bootstrap 5 Grid
 - **State & Architecture**: Reactive Signal State Management, Role Guards, Dedicated Layouts
+- **i18n**: Bilingual UI, Arabic (default, full RTL) + English, header language switcher, remembered choice, IBM Plex Sans Arabic
 
 ---
 
@@ -99,6 +100,8 @@ npm start
 ## 🌐 Live Demo
 
 Deployed as a single Docker container (Angular frontend served by the API, SQLite seed data).
+The UI is bilingual: Arabic by default with full RTL, English one tap away in the header.
+Demo content (seeded job titles, candidate names) stays in English.
 
 > Demo notes: the free host sleeps when idle, so the first load can take ~30–60s.
 > AI candidate analysis needs an `OpenAI__ApiKey`; without it a built-in heuristic

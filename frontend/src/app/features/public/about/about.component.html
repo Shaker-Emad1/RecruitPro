@@ -1,9 +1,9 @@
 <div class="page-hero text-center">
   <div class="container">
-    <span class="eyebrow">About RecruitPro</span>
-    <h1 class="page-title">Pioneering Modern Recruitment Infrastructure</h1>
+    <span class="eyebrow">{{ 'about.kicker' | t }}</span>
+    <h1 class="page-title">{{ 'about.title' | t }}</h1>
     <p class="page-lead">
-      We build enterprise tools that connect extraordinary talent with transformative engineering teams.
+      {{ 'about.lead' | t }}
     </p>
   </div>
 </div>
@@ -13,17 +13,17 @@
     <div class="grid-2">
       <div class="info-box">
         <div class="icon"><app-icon name="target" [size]="16" /></div>
-        <h2>Our Mission</h2>
+        <h2>{{ 'about.mission' | t }}</h2>
         <p>
-          To eliminate friction in technical recruitment by delivering structured, objective evaluation platforms that empower both candidates and hiring organizations.
+          {{ 'about.mission.p' | t }}
         </p>
       </div>
 
       <div class="info-box">
         <div class="icon"><app-icon name="zap" [size]="16" /></div>
-        <h2>Our Vision</h2>
+        <h2>{{ 'about.vision' | t }}</h2>
         <p>
-          To define the global standard for modern applicant tracking systems, combining rapid skill matching with seamless candidate experiences.
+          {{ 'about.vision.p' | t }}
         </p>
       </div>
     </div>
@@ -33,22 +33,22 @@
 <section class="section bg-surface">
   <div class="container">
     <div class="text-center max-w-600 mb-5">
-      <span class="eyebrow">Our Core Values</span>
-      <h2>Principles Driving Our Platform</h2>
+      <span class="eyebrow">{{ 'about.values.kicker' | t }}</span>
+      <h2>{{ 'about.values.title' | t }}</h2>
     </div>
 
     <div class="grid-3">
       <div class="value-card">
-        <h3>Transparency First</h3>
-        <p>Candidates deserve clear status tracking, feedback loops, and interview scheduling transparency at every step.</p>
+        <h3>{{ 'about.v1.t' | t }}</h3>
+        <p>{{ 'about.v1.p' | t }}</p>
       </div>
       <div class="value-card">
-        <h3>Engineering Excellence</h3>
-        <p>We build robust, Clean Architecture software engineered for performance, security, and developer joy.</p>
+        <h3>{{ 'about.v2.t' | t }}</h3>
+        <p>{{ 'about.v2.p' | t }}</p>
       </div>
       <div class="value-card">
-        <h3>Human-Centric Design</h3>
-        <p>Technology should empower human decision-making, not replace empathy or personal connection in hiring.</p>
+        <h3>{{ 'about.v3.t' | t }}</h3>
+        <p>{{ 'about.v3.p' | t }}</p>
       </div>
     </div>
   </div>
@@ -57,12 +57,12 @@
 <section class="section">
   <div class="container">
     <div class="philosophy-box text-center">
-      <span class="eyebrow">Recruitment Philosophy</span>
-      <h2>Skills Over Speculation</h2>
+      <span class="eyebrow">{{ 'about.phil.kicker' | t }}</span>
+      <h2>{{ 'about.phil.title' | t }}</h2>
       <p class="lead-text">
-        We believe candidate potential is measured through practical experience, technical achievements, and continuous learning—not arbitrary resume filters.
+        {{ 'about.phil.p' | t }}
       </p>
-      <a routerLink="/jobs" class="btn-primary mt-3">View Active Job Openings</a>
+      <a routerLink="/jobs" class="btn-primary mt-3">{{ 'about.phil.cta' | t }}</a>
     </div>
   </div>
 </section>
