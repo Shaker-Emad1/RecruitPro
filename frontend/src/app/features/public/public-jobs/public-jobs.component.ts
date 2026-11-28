@@ -64,7 +64,7 @@ export class PublicJobsComponent implements OnInit, OnDestroy {
 
   private loadJobs(search: string): void {
     this.loading.set(true);
-    this.jobService.getAll(this.currentPage(), this.pageSize, search).pipe(
+    this.jobService.getAll(this.currentPage(), this.pageSize, search, 'Open').pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (res: PaginatedResult<Job>) => {

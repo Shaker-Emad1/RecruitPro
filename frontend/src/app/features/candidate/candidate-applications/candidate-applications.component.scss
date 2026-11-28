@@ -49,7 +49,7 @@
   .step-label { font-size: 0.7rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
 
   &.completed {
-    .step-dot { background: #2563eb; border-color: #2563eb; }
+    .step-dot { background: var(--primary); border-color: var(--primary); }
     .step-label { color: var(--foreground); }
   }
 }

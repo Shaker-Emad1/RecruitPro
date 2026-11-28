@@ -35,7 +35,7 @@
   color: var(--foreground);
 
   &-icon { font-size: 1.4rem; }
-  &-name { font-weight: 500; strong { font-weight: 800; color: #2563eb; } }
+  &-name { font-weight: 500; strong { font-weight: 800; color: var(--primary); } }
 }
 
 .candidate-nav {
@@ -58,7 +58,7 @@
   }
 
   .nav-jobs-btn {
-    color: #2563eb;
+    color: var(--primary);
     font-weight: 700;
     &:hover { background: rgba(37, 99, 235, 0.1); }
   }

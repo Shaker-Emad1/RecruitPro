@@ -2,28 +2,52 @@
 <section class="hero-section">
   <div class="container hero-container">
     <div class="hero-content">
-      <span class="hero-badge">✨ Next-Gen Recruitment Experience</span>
-      <h1 class="hero-title">Build Your Dream Team With Modern Talent Intelligence</h1>
+      <span class="hero-badge"><span class="hero-badge__dot"></span> Recruitment OS for modern teams</span>
+      <h1 class="hero-title">Hire the right people, <em>without the chaos.</em></h1>
       <p class="hero-subtitle">
-        Connect exceptional talent with world-class engineering teams. Explore high-impact roles, streamlined application tracking, and automated candidate experiences.
+        One workspace for jobs, candidates, interviews and offers. A five-stage pipeline,
+        AI-assisted candidate scoring, and analytics your leadership team will actually read.
       </p>
       <div class="hero-cta">
-        <a routerLink="/jobs" class="btn-primary-large">Explore Open Roles →</a>
-        <a routerLink="/about" class="btn-secondary-large">Learn About Us</a>
+        <a routerLink="/jobs" class="btn-primary-large">Explore open roles</a>
+        <a routerLink="/login" class="btn-secondary-large">View the live demo</a>
       </div>
       <div class="hero-stats">
         <div class="stat-item">
           <strong>1,000+</strong>
-          <span>Vetted Candidates</span>
+          <span>Seeded candidates</span>
         </div>
         <div class="stat-item">
-          <strong>98.4%</strong>
-          <span>Match Accuracy</span>
+          <strong>5</strong>
+          <span>Pipeline stages</span>
         </div>
         <div class="stat-item">
-          <strong>100+</strong>
-          <span>Active Opportunities</span>
+          <strong>4</strong>
+          <span>Role portals</span>
         </div>
+      </div>
+    </div>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="hero-panel__card hero-panel__card--main">
+        <div class="hp-row hp-row--head">
+          <span class="hp-title">Pipeline this week</span>
+          <span class="hp-pill">Live</span>
+        </div>
+        <div class="hp-funnel">
+          <div class="hp-stage" style="--w:100%"><span>Applied</span><b>214</b></div>
+          <div class="hp-stage" style="--w:72%"><span>Screening</span><b>153</b></div>
+          <div class="hp-stage" style="--w:46%"><span>Interview</span><b>97</b></div>
+          <div class="hp-stage" style="--w:24%"><span>Offer</span><b>51</b></div>
+          <div class="hp-stage" style="--w:12%"><span>Hired</span><b>26</b></div>
+        </div>
+      </div>
+      <div class="hero-panel__card hero-panel__card--float">
+        <span class="hp-avatar">SM</span>
+        <div>
+          <b>Sara Mahmoud</b>
+          <small>AI match · 92%</small>
+        </div>
+        <span class="hp-check">✓</span>
       </div>
     </div>
   </div>
@@ -33,27 +57,28 @@
 <section class="section bg-surface">
   <div class="container">
     <div class="section-header text-center">
-      <span class="eyebrow">Company Overview</span>
-      <h2>Transforming Hiring From Friction to Freedom</h2>
+      <span class="eyebrow">Why RecruitPro</span>
+      <h2>From scattered spreadsheets to one calm workflow</h2>
       <p class="section-desc">
-        RecruitPro provides enterprise-grade recruitment workflows designed to streamline sourcing, screening, scheduling, and onboarding.
+        Sourcing, screening, scheduling and offers share the same source of truth,
+        so nothing falls through the cracks between people.
       </p>
     </div>
     <div class="overview-grid">
       <div class="overview-card">
-        <div class="card-icon">⚡</div>
-        <h3>Rapid Sourcing</h3>
-        <p>Accelerate your candidate search with debounced real-time skill matching and criteria filtering.</p>
+        <div class="card-icon">◎</div>
+        <h3>Visual pipeline</h3>
+        <p>Drag candidates through five stages and see conversion, stagnation and workload at a glance.</p>
       </div>
       <div class="overview-card">
-        <div class="card-icon">🎯</div>
-        <h3>Precision Evaluation</h3>
-        <p>Objective candidate assessment frameworks to evaluate strengths, technical depth, and cultural fit.</p>
+        <div class="card-icon">✦</div>
+        <h3>AI candidate scoring</h3>
+        <p>Summaries, strengths, weaknesses and suggested interview questions per candidate.</p>
       </div>
       <div class="overview-card">
-        <div class="card-icon">📅</div>
-        <h3>Seamless Scheduling</h3>
-        <p>Automated interview coordination with calendar sync and Google Meet link generation.</p>
+        <div class="card-icon">▦</div>
+        <h3>Executive analytics</h3>
+        <p>Hiring funnel, 12-month trends, department breakdowns and one-click CSV export.</p>
       </div>
     </div>
   </div>
@@ -64,10 +89,10 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-end mb-4">
       <div>
-        <span class="eyebrow">Featured Opportunities</span>
-        <h2 class="mb-0">Explore Top Roles</h2>
+        <span class="eyebrow">Featured opportunities</span>
+        <h2 class="mb-0">Open roles right now</h2>
       </div>
-      <a routerLink="/jobs" class="view-all-link">View All Positions →</a>
+      <a routerLink="/jobs" class="view-all-link">View all positions →</a>
     </div>
 
     @if (loading()) {
@@ -84,13 +109,13 @@
               <app-badge [text]="job.status" colorClass="badge-green"></app-badge>
             </div>
             <h3 class="job-title">{{ job.title }}</h3>
-            <p class="job-location">📍 {{ job.location }}</p>
+            <p class="job-location">{{ job.location }}</p>
             <div class="job-skills">
               <span class="skill-tag">{{ job.requiredSkills }}</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-salary">${{ job.salaryMin | number }} - ${{ job.salaryMax | number }}</span>
-              <a [routerLink]="['/jobs', job.id]" class="btn-apply-sm">View Position</a>
+              <span class="job-salary">${{ job.salaryMin | number }} – ${{ job.salaryMax | number }}</span>
+              <a [routerLink]="['/jobs', job.id]" class="btn-apply-sm">View position</a>
             </div>
           </div>
         } @empty {
@@ -105,42 +130,42 @@
 <section class="section bg-surface">
   <div class="container">
     <div class="section-header text-center">
-      <span class="eyebrow">Structured Hiring</span>
-      <h2>Our 4-Step Recruitment Process</h2>
+      <span class="eyebrow">Structured hiring</span>
+      <h2>A clear path from application to offer</h2>
     </div>
     <div class="process-steps">
       <div class="step-card">
         <span class="step-num">01</span>
-        <h4>Discover & Apply</h4>
+        <h4>Discover & apply</h4>
         <p>Browse active opportunities and submit your profile or resume seamlessly.</p>
       </div>
       <div class="step-card">
         <span class="step-num">02</span>
-        <h4>Review & Match</h4>
-        <p>Our hiring team evaluates skills, experience level, and position alignment.</p>
+        <h4>Review & match</h4>
+        <p>The hiring team evaluates skills, experience and position alignment.</p>
       </div>
       <div class="step-card">
         <span class="step-num">03</span>
-        <h4>Interview Stage</h4>
-        <p>Participate in technical and HR conversations with calendar-integrated meeting links.</p>
+        <h4>Interview</h4>
+        <p>Technical and HR conversations with calendar-ready meeting links.</p>
       </div>
       <div class="step-card">
         <span class="step-num">04</span>
-        <h4>Offer & Onboard</h4>
-        <p>Receive formal offer letters and join your new engineering team.</p>
+        <h4>Offer & onboard</h4>
+        <p>Formal offer letters and a clean handover to the new team.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Testimonials & Call To Action -->
+<!-- Call To Action -->
 <section class="section cta-section">
   <div class="container text-center">
-    <h2>Ready to Elevate Your Career Strategy?</h2>
-    <p class="cta-desc">Join hundreds of successful candidates and hiring managers using RecruitPro today.</p>
+    <h2>Ready to run hiring like a system?</h2>
+    <p class="cta-desc">Create a candidate account, or sign in with a demo role and explore every portal.</p>
     <div class="d-flex justify-content-center gap-3">
-      <a routerLink="/register" class="btn-cta-primary">Create Candidate Account</a>
-      <a routerLink="/contact" class="btn-cta-secondary">Contact Hiring Team</a>
+      <a routerLink="/register" class="btn-cta-primary">Create candidate account</a>
+      <a routerLink="/login" class="btn-cta-secondary">Sign in to the demo</a>
     </div>
   </div>
 </section>

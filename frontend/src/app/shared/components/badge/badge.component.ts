@@ -17,13 +17,13 @@ import { NgClass } from '@angular/common';
       font-weight: 600;
       white-space: nowrap;
     }
-    .badge-blue    { background: #eff6ff; color: #1d4ed8; }
-    .badge-teal    { background: #f0fdfa; color: #0f766e; }
-    .badge-slate   { background: #f1f5f9; color: #334155; }
-    .badge-dark    { background: #0f172a; color: #fff; }
-    .badge-green   { background: #f0fdf4; color: #166534; }
-    .badge-red     { background: #fef2f2; color: #991b1b; }
-    .badge-amber   { background: #fffbeb; color: #92400e; }
+    .badge-blue    { background: rgba(11,107,79,.1); color: var(--primary); }
+    .badge-teal    { background: rgba(15,118,110,.1); color: var(--success); }
+    .badge-slate   { background: var(--surface-muted); color: var(--muted-strong); }
+    .badge-dark    { background: var(--ink); color: #f7f5f0; }
+    .badge-green   { background: var(--success-bg); color: var(--success); }
+    .badge-red     { background: var(--danger-bg); color: var(--danger); }
+    .badge-amber   { background: var(--warning-bg); color: var(--warning); }
   `],
 })
 export class BadgeComponent {

@@ -10,10 +10,13 @@ export class JobService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(page = 1, pageSize = 50, search = ''): Observable<PaginatedResult<Job>> {
+  getAll(page = 1, pageSize = 50, search = '', status = ''): Observable<PaginatedResult<Job>> {
     let params = new HttpParams().set('page', page).set('pageSize', pageSize);
     if (search) {
       params = params.set('search', search);
+    }
+    if (status) {
+      params = params.set('status', status);
     }
     return this.http
       .get<ApiResponse<PaginatedResult<Job>>>(this.base, { params })

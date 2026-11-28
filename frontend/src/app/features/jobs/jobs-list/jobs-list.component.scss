@@ -31,7 +31,7 @@
   height: 100%;
 }
 
-.job-dept { font-size: 0.75rem; font-weight: 800; color: #2563eb; text-transform: uppercase; }
+.job-dept { font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; }
 .job-title-card { font-size: 1.1rem; font-weight: 800; margin: 4px 0; }
 .job-location { font-size: 0.8125rem; color: var(--muted); margin-bottom: 12px; }
 .skill-tag { font-size: 0.75rem; background: var(--surface-muted); padding: 4px 8px; border-radius: 6px; color: var(--muted-strong); }
@@ -41,7 +41,7 @@
   text-decoration: none;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #2563eb;
+  color: var(--primary);
   padding: 4px 8px;
   border-radius: 6px;
   background: rgba(37, 99, 235, 0.1);

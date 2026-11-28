@@ -112,7 +112,7 @@
   }
 }
 
-.bar-candidates { background: #2563eb; }
+.bar-candidates { background: var(--primary); }
 .bar-interviews { background: #d97706; }
 .bar-hires      { background: #16a34a; }
 
@@ -165,7 +165,7 @@
 
 .dept-bar {
   height: 100%;
-  background: #2563eb;
+  background: var(--primary);
   border-radius: 99px;
   transition: width 0.6s ease;
   min-width: 4px;

@@ -22,7 +22,7 @@ $topbar-h: 60px;
   left: 0;
   height: 100vh;
   width: $sidebar-w;
-  background: #0f172a;
+  background: var(--foreground);
   display: flex;
   flex-direction: column;
   z-index: 50;
@@ -51,7 +51,7 @@ $topbar-h: 60px;
 .brand-logo {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #2563eb, #0f766e);
+  background: linear-gradient(135deg, var(--primary), #0f766e);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@ $topbar-h: 60px;
     color: #93c5fd;
     font-weight: 600;
 
-    .nav-icon { color: #60a5fa; }
+    .nav-icon { color: var(--primary-hover); }
   }
 }
 
@@ -142,7 +142,7 @@ $topbar-h: 60px;
 .user-avatar {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #2563eb, #0f766e);
+  background: linear-gradient(135deg, var(--primary), #0f766e);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -273,7 +273,7 @@ $topbar-h: 60px;
 .topbar__avatar {
   width: 34px;
   height: 34px;
-  background: linear-gradient(135deg, #2563eb, #0f766e);
+  background: linear-gradient(135deg, var(--primary), #0f766e);
   border-radius: 10px;
   display: flex;
   align-items: center;

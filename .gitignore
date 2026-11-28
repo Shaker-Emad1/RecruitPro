@@ -38,3 +38,6 @@ appsettings.Local.json
 # ── OS Generated Files ───────────────────────────
 .DS_Store
 Thumbs.db
+
+# built frontend output served by the API
+backend/API/wwwroot/

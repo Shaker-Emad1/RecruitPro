@@ -50,13 +50,14 @@ public static class DataSeeder
                 RequiredSkills = string.Join(", ", Enumerable.Range(0, random.Next(3, 6)).Select(_ => skillsPool[random.Next(skillsPool.Length)])),
                 MinimumExperience = random.Next(1, 8),
                 SalaryMin = 70000 + random.Next(0, 10) * 10000,
-                SalaryMax = 120000 + random.Next(0, 10) * 10000,
+                SalaryMax = 0, // set after construction to guarantee Max > Min
                 Location = new[] { "New York, NY", "San Francisco, CA", "Austin, TX", "Seattle, WA", "Chicago, IL", "Remote", "Boston, MA", "Denver, CO" }[random.Next(8)],
                 Status = random.NextDouble() > 0.2 ? JobStatus.Open : (random.NextDouble() > 0.5 ? JobStatus.Closed : JobStatus.Draft),
                 CreatedById = users[random.Next(users.Count)].Id,
                 CreatedAt = createdAt,
                 UpdatedAt = random.NextDouble() > 0.5 ? createdAt.AddDays(random.Next(1, 60)) : null
             };
+            job.SalaryMax = job.SalaryMin + 30000 + random.Next(0, 8) * 10000;
             jobs.Add(job);
         }
         context.Set<Job>().AddRange(jobs);

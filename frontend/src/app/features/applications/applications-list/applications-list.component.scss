@@ -75,7 +75,7 @@
   cursor: pointer;
 }
 
-.btn-screen { background: #eff6ff; color: #1d4ed8; }
+.btn-screen { background: #eff6ff; color: var(--primary-hover); }
 .btn-interview { background: #fffbeb; color: #b45309; }
 .btn-offer { background: #f0fdf4; color: #166534; }
 .btn-hire { background: #0f766e; color: #fff; }

@@ -1,46 +1,50 @@
 @import "bootstrap/dist/css/bootstrap-reboot.css";
 @import "bootstrap/dist/css/bootstrap-grid.css";
 
-/* ── Unified Enterprise Design Tokens ───────────────────────── */
+/* ── Design Tokens: Light Studio ────────────────────────────── */
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: rgba(37, 99, 235, 0.1);
-  --background: #f4f7fb;
-  --foreground: #0f172a;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-muted: #eef3f8;
-  --border: rgba(148, 163, 184, 0.22);
-  --border-strong: rgba(100, 116, 139, 0.3);
-  --muted: #64748b;
-  --muted-strong: #334155;
-  --focus: #2563eb;
+  --primary: #0b6b4f;
+  --primary-hover: #085a41;
+  --primary-light: rgba(11, 107, 79, 0.1);
+  --accent: #c77d2b;
+  --background: #f7f5f0;
+  --foreground: #16211c;
+  --surface: #ffffff;
+  --surface-muted: #efede6;
+  --border: rgba(22, 33, 28, 0.12);
+  --border-strong: rgba(22, 33, 28, 0.26);
+  --muted: #66746d;
+  --muted-strong: #3d4a44;
+  --focus: #0b6b4f;
   --success: #0f766e;
-  --success-bg: #f0fdfa;
-  --warning: #b45309;
-  --warning-bg: #fffbeb;
-  --danger: #b91c1c;
-  --danger-bg: #fef2f2;
+  --success-bg: #effaf5;
+  --warning: #9a5b12;
+  --warning-bg: #fdf6e9;
+  --danger: #b33030;
+  --danger-bg: #fdf0ef;
+  --ink: #16211c;
   --radius-sm: 8px;
   --radius-md: 14px;
-  --radius-lg: 24px;
-  --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.08);
-  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.04);
+  --radius-lg: 22px;
+  --shadow-soft: 0 20px 50px rgba(22, 33, 28, 0.08);
+  --shadow-card: 0 2px 14px rgba(22, 33, 28, 0.05);
   --transition-fast: 180ms ease;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
 }
 
 body.dark-theme {
-  --primary: #3b82f6;
-  --primary-hover: #60a5fa;
-  --primary-light: rgba(59, 130, 246, 0.15);
-  --background: #0b0f19;
-  --foreground: #f8fafc;
-  --surface: rgba(15, 23, 42, 0.92);
-  --surface-muted: #1e293b;
+  --primary: #3aa87f;
+  --primary-hover: #57bd94;
+  --primary-light: rgba(58, 168, 127, 0.16);
+  --background: #101613;
+  --foreground: #f2f5f2;
+  --surface: #1a221e;
+  --surface-muted: #232d27;
   --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --muted: #94a3b8;
-  --muted-strong: #cbd5e1;
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --muted: #93a29a;
+  --muted-strong: #c4d0c8;
   --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.4);
 }
 
@@ -52,9 +56,17 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, .display-font {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h4, h5, h6 { font-family: var(--font-body); }
 
 a, button, input, select, textarea { transition: var(--transition-fast); }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
@@ -70,6 +82,7 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
 
   &:hover {
     border-color: var(--border-strong);
+    box-shadow: var(--shadow-soft);
   }
 }
 
@@ -78,7 +91,7 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
   color: #fff;
   font-weight: 700;
   padding: 10px 20px;
-  border-radius: var(--radius-md);
+  border-radius: 999px;
   border: none;
   text-decoration: none;
   display: inline-flex;
@@ -97,7 +110,7 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
   color: var(--foreground);
   font-weight: 600;
   padding: 10px 20px;
-  border-radius: var(--radius-md);
+  border-radius: 999px;
   border: 1px solid var(--border-strong);
   text-decoration: none;
   display: inline-flex;
@@ -116,7 +129,7 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
   padding: 12px 16px;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
-  background: #fff;
+  background: var(--surface);
   color: var(--foreground);
   font-size: 0.9rem;
   outline: none;
@@ -126,3 +139,5 @@ a, button, input, select, textarea { transition: var(--transition-fast); }
     box-shadow: 0 0 0 3px var(--primary-light);
   }
 }
+
+::selection { background: var(--primary-light); }

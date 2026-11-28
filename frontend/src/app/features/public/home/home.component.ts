@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   loading = signal(true);
 
   ngOnInit(): void {
-    this.jobService.getAll(1, 6).subscribe({
+    this.jobService.getAll(1, 6, '', 'Open').subscribe({
       next: (res: PaginatedResult<Job>) => {
         this.featuredJobs.set(res.items || []);
         this.loading.set(false);

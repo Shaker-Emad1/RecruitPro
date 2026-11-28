@@ -30,7 +30,7 @@
   height: 100%;
 }
 
-.type-tag { font-size: 0.75rem; font-weight: 800; color: #2563eb; text-transform: uppercase; }
+.type-tag { font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; }
 .cand-heading { font-size: 1.1rem; font-weight: 800; margin: 4px 0; }
 .date-text, .loc-text { font-size: 0.8125rem; color: var(--muted); margin-bottom: 4px; }
 
@@ -39,7 +39,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   color: #fff;
-  background: #2563eb;
+  background: var(--primary);
   padding: 6px 12px;
   border-radius: 8px;
   text-decoration: none;
@@ -50,7 +50,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   background: rgba(37, 99, 235, 0.1);
-  color: #2563eb;
+  color: var(--primary);
   border: none;
   padding: 4px 8px;
   border-radius: 6px;
