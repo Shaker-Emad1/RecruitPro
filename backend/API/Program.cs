@@ -28,7 +28,14 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "RecruitmentPlatformSecretKey2024!@#$%^&*()";
+var jwtKey = builder.Configuration["Jwt:Key"];
+if (string.IsNullOrEmpty(jwtKey))
+{
+    if (builder.Environment.IsDevelopment())
+        jwtKey = "dev-only-insecure-signing-key-not-for-production";
+    else
+        throw new InvalidOperationException("Jwt:Key is not configured. Set the Jwt__Key environment variable.");
+}
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "RecruitmentPlatform";
 var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "RecruitmentPlatformClient";
 
@@ -152,9 +159,12 @@ app.UseCors();
 app.UseRateLimiter();
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 try
 {

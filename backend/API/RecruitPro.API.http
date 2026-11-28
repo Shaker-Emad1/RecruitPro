@@ -1,0 +1,6 @@
+@RecruitPro.API_HostAddress = http://localhost:5136
+
+GET {{RecruitPro.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

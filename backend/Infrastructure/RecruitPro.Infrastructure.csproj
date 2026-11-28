@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\SalesAutomation.Application.csproj" />
+    <ProjectReference Include="..\Application\RecruitPro.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
