@@ -88,9 +88,9 @@
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 4px;
 
-  &--candidates { background: rgba(15, 23, 42, 0.85); }
-  &--interviews  { background: rgba(13, 148, 136, 0.85); }
-  &--hires       { background: rgba(59, 130, 246, 0.85); }
+  &--candidates { background: var(--ink); }
+  &--interviews  { background: var(--lime-strong); }
+  &--hires       { background: var(--cyan); }
 }
 
 .bar-label {
@@ -121,9 +121,9 @@
   height: 10px;
   border-radius: 3px;
 
-  &.dot--candidates { background: rgba(15, 23, 42, 0.85); }
-  &.dot--interviews  { background: rgba(13, 148, 136, 0.85); }
-  &.dot--hires       { background: rgba(59, 130, 246, 0.85); }
+  &.dot--candidates { background: var(--ink); }
+  &.dot--interviews  { background: var(--lime-strong); }
+  &.dot--hires       { background: var(--cyan); }
 }
 
 // ── Side panels ────────────────────────────────────────────

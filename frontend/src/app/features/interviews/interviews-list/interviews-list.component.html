@@ -123,8 +123,8 @@
           </div>
 
           <h3 class="cand-heading">Candidate #{{ interview.candidateId.substring(0, 8) }}</h3>
-          <p class="date-text">📅 {{ interview.startTime | date:'medium' }}</p>
-          <p class="loc-text">📍 {{ interview.location }}</p>
+          <p class="date-text"><app-icon name="calendar" [size]="16" /> {{ interview.startTime | date:'medium' }}</p>
+          <p class="loc-text"><app-icon name="map-pin" [size]="16" /> {{ interview.location }}</p>
 
           @if (interview.meetingLink) {
             <a [href]="interview.meetingLink" target="_blank" class="btn-meet">Join Session Link</a>

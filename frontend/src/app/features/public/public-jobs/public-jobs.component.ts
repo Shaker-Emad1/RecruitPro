@@ -6,11 +6,12 @@ import { JobService } from '../../../core/services/job.service';
 import { Job, PaginatedResult } from '../../../core/models/api.models';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-public-jobs',
   standalone: true,
-  imports: [RouterLink, FormsModule, BadgeComponent, DatePipe, CurrencyPipe],
+  imports: [RouterLink, FormsModule, BadgeComponent, DatePipe, CurrencyPipe, IconComponent ],
   templateUrl: './public-jobs.component.html',
   styleUrl: './public-jobs.component.scss'
 })

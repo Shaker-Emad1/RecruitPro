@@ -13,7 +13,7 @@
 
       @if (resumeFileName()) {
         <div class="resume-active-box mb-3">
-          <div class="resume-icon">📄</div>
+          <div class="resume-icon"><app-icon name="file-text" [size]="16" /></div>
           <div class="resume-meta">
             <span class="file-name">{{ resumeFileName() }}</span>
             <span class="file-status">✓ Verified & Ready</span>
@@ -25,7 +25,7 @@
             Replace Resume
             <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,.doc" class="d-none" />
           </label>
-          <button class="btn-delete-resume" (click)="deleteResume()" title="Delete Resume">🗑️</button>
+          <button class="btn-delete-resume" (click)="deleteResume()" title="Delete Resume"><app-icon name="trash" [size]="16" /></button>
         </div>
       } @else {
         <div class="resume-dropzone text-center p-4">

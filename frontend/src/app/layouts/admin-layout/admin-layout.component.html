@@ -6,7 +6,7 @@
   <!-- Sidebar -->
   <aside class="sidebar" [class.sidebar--open]="sidebarOpen()">
     <div class="sidebar__brand">
-      <div class="brand-logo">AD</div>
+      <div class="brand-logo"><app-icon name="radar" [size]="20" [stroke]="2.2" /></div>
       <div class="brand-text">
         <span class="brand-name">RecruitPro</span>
         <span class="brand-sub">Admin Workspace</span>
@@ -21,7 +21,7 @@
           routerLinkActive="nav-link--active"
           (click)="closeSidebar()"
         >
-          <span class="nav-icon">{{ item.icon }}</span>
+          <app-icon class="nav-icon" [name]="item.icon" [size]="18" />
           <span class="nav-label">{{ item.label }}</span>
         </a>
       }
@@ -35,7 +35,7 @@
           <span class="user-role">{{ auth.userRole() }}</span>
         </div>
       </div>
-      <button class="btn-logout" (click)="logout()">Sign out</button>
+      <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> Sign out</button>
     </div>
   </aside>
 

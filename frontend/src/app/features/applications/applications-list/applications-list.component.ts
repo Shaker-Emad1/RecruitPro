@@ -6,11 +6,12 @@ import { PageHeaderComponent } from '../../../shared/components/page-header/page
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-applications-list',
   standalone: true,
-  imports: [PageHeaderComponent, BadgeComponent, DatePipe, FormsModule],
+  imports: [PageHeaderComponent, BadgeComponent, DatePipe, FormsModule, IconComponent ],
   templateUrl: './applications-list.component.html',
   styleUrl: './applications-list.component.scss',
 })

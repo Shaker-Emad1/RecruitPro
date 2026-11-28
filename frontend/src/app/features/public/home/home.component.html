@@ -1,171 +1,161 @@
-<!-- Hero Section -->
-<section class="hero-section">
-  <div class="container hero-container">
-    <div class="hero-content">
-      <span class="hero-badge"><span class="hero-badge__dot"></span> Recruitment OS for modern teams</span>
-      <h1 class="hero-title">Hire the right people, <em>without the chaos.</em></h1>
-      <p class="hero-subtitle">
-        One workspace for jobs, candidates, interviews and offers. A five-stage pipeline,
-        AI-assisted candidate scoring, and analytics your leadership team will actually read.
-      </p>
-      <div class="hero-cta">
-        <a routerLink="/jobs" class="btn-primary-large">Explore open roles</a>
-        <a routerLink="/login" class="btn-secondary-large">View the live demo</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <strong>1,000+</strong>
-          <span>Seeded candidates</span>
-        </div>
-        <div class="stat-item">
-          <strong>5</strong>
-          <span>Pipeline stages</span>
-        </div>
-        <div class="stat-item">
-          <strong>4</strong>
-          <span>Role portals</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-panel" aria-hidden="true">
-      <div class="hero-panel__card hero-panel__card--main">
-        <div class="hp-row hp-row--head">
-          <span class="hp-title">Pipeline this week</span>
-          <span class="hp-pill">Live</span>
-        </div>
-        <div class="hp-funnel">
-          <div class="hp-stage" style="--w:100%"><span>Applied</span><b>214</b></div>
-          <div class="hp-stage" style="--w:72%"><span>Screening</span><b>153</b></div>
-          <div class="hp-stage" style="--w:46%"><span>Interview</span><b>97</b></div>
-          <div class="hp-stage" style="--w:24%"><span>Offer</span><b>51</b></div>
-          <div class="hp-stage" style="--w:12%"><span>Hired</span><b>26</b></div>
-        </div>
-      </div>
-      <div class="hero-panel__card hero-panel__card--float">
-        <span class="hp-avatar">SM</span>
-        <div>
-          <b>Sara Mahmoud</b>
-          <small>AI match · 92%</small>
-        </div>
-        <span class="hp-check">✓</span>
-      </div>
-    </div>
+<!-- Live role ticker -->
+<div class="ticker-strip">
+  <span class="ticker-label"><span class="pulse-dot"></span> LIVE</span>
+  <div class="ticker-items">
+    @for (item of tickerItems(); track $index) { <span>{{ item }}</span> }
+    <span>● {{ openCount() }} OPEN ROLES ON THE BOARD</span>
+    <span>● 37 NEW STRONG MATCHES TODAY</span>
+    @for (item of tickerItems(); track 'dup-' + $index) { <span>{{ item }}</span> }
+    <span>● {{ openCount() }} OPEN ROLES ON THE BOARD</span>
+    <span>● 37 NEW STRONG MATCHES TODAY</span>
   </div>
-</section>
+</div>
 
-<!-- Company Overview -->
-<section class="section bg-surface">
-  <div class="container">
-    <div class="section-header text-center">
-      <span class="eyebrow">Why RecruitPro</span>
-      <h2>From scattered spreadsheets to one calm workflow</h2>
-      <p class="section-desc">
-        Sourcing, screening, scheduling and offers share the same source of truth,
-        so nothing falls through the cracks between people.
-      </p>
+<!-- Hero + interactive radar -->
+<section class="hero">
+  <div class="hero__copy">
+    <div class="kicker mono"><span class="pulse-dot cyan"></span> SIGNAL ACQUIRED — HIRING, LIVE</div>
+    <h1>TUNE IN<br />TO <span class="stroke">TALENT</span><br />SIGNAL<span class="lime-dot">.</span></h1>
+    <p class="sub">
+      RecruitPro turns hiring into a live feed: 1,000 candidates on the radar, every
+      application scored the second it lands, every strong match highlighted on the board.
+      Stop digging. Start receiving.
+    </p>
+    <div class="cta-row">
+      <a routerLink="/jobs" class="btn-ui-primary">Scan {{ openCount() }} Roles <app-icon name="arrow-right" [size]="15" /></a>
+      <a routerLink="/register" class="btn-ui-outline">Get On The Radar</a>
     </div>
-    <div class="overview-grid">
-      <div class="overview-card">
-        <div class="card-icon">◎</div>
-        <h3>Visual pipeline</h3>
-        <p>Drag candidates through five stages and see conversion, stagnation and workload at a glance.</p>
-      </div>
-      <div class="overview-card">
-        <div class="card-icon">✦</div>
-        <h3>AI candidate scoring</h3>
-        <p>Summaries, strengths, weaknesses and suggested interview questions per candidate.</p>
-      </div>
-      <div class="overview-card">
-        <div class="card-icon">▦</div>
-        <h3>Executive analytics</h3>
-        <p>Hiring funnel, 12-month trends, department breakdowns and one-click CSV export.</p>
-      </div>
-    </div>
+    <div class="hero-hint mono"><app-icon name="radar" [size]="14" /> Hover a blip to inspect the signal — click to open the role</div>
   </div>
-</section>
 
-<!-- Featured Jobs -->
-<section class="section">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-end mb-4">
-      <div>
-        <span class="eyebrow">Featured opportunities</span>
-        <h2 class="mb-0">Open roles right now</h2>
-      </div>
-      <a routerLink="/jobs" class="view-all-link">View all positions →</a>
+  <div class="radar" aria-label="Live roles radar">
+    <div class="radar__ring r1"></div>
+    <div class="radar__ring r2"></div>
+    <div class="radar__ring r3"></div>
+    <div class="radar__ring r4"></div>
+    <div class="radar__cross h"></div>
+    <div class="radar__cross v"></div>
+    <div class="radar__sweep"></div>
+    <div class="radar__center">
+      <b>1,000</b>
+      <span class="mono">CANDIDATES<br />ON RADAR</span>
     </div>
-
-    @if (loading()) {
-      <div class="text-center py-5">
-        <div class="spinner-border text-primary" role="status"></div>
-        <p class="mt-2 text-muted">Loading featured positions...</p>
-      </div>
-    } @else {
-      <div class="jobs-grid">
-        @for (job of featuredJobs(); track job.id) {
-          <div class="job-card">
-            <div class="job-card__header">
-              <span class="job-dept">{{ job.department }}</span>
-              <app-badge [text]="job.status" colorClass="badge-green"></app-badge>
-            </div>
-            <h3 class="job-title">{{ job.title }}</h3>
-            <p class="job-location">{{ job.location }}</p>
-            <div class="job-skills">
-              <span class="skill-tag">{{ job.requiredSkills }}</span>
-            </div>
-            <div class="job-card__footer">
-              <span class="job-salary">${{ job.salaryMin | number }} – ${{ job.salaryMax | number }}</span>
-              <a [routerLink]="['/jobs', job.id]" class="btn-apply-sm">View position</a>
-            </div>
-          </div>
-        } @empty {
-          <p class="text-muted">No open positions at this moment.</p>
-        }
+    @for (blip of blips(); track blip.job.id) {
+      <button
+        type="button"
+        class="blip"
+        [class.cyan]="blip.cyan"
+        [class.active]="activeBlip()?.job?.id === blip.job.id"
+        [style.left.%]="blip.x"
+        [style.top.%]="blip.y"
+        (mouseenter)="hover(blip.job)"
+        (mouseleave)="hover(null)"
+        (focus)="hover(blip.job)"
+        (blur)="hover(null)"
+        (click)="open(blip.job)"
+        [attr.aria-label]="blip.job.title + ' — open role'"
+      ></button>
+    }
+    @if (activeBlip(); as blip) {
+      <div
+        class="radar__tip mono"
+        [style.left.%]="blip.x"
+        [style.top.%]="blip.y"
+        [class.flip]="blip.x > 55"
+      >
+        <b>{{ blip.job.title }}</b>
+        <span>{{ blip.job.location }} · {{ blip.confidence }}% MATCH</span>
+        <span class="pay">${{ blip.job.salaryMin | number }} – ${{ blip.job.salaryMax | number }}</span>
       </div>
     }
   </div>
 </section>
 
-<!-- Recruitment Process -->
-<section class="section bg-surface">
-  <div class="container">
-    <div class="section-header text-center">
-      <span class="eyebrow">Structured hiring</span>
-      <h2>A clear path from application to offer</h2>
+<!-- Stats band -->
+<section class="stats-band">
+  <div class="stat"><b>1,000</b><span class="mono">Candidates tracked</span><span class="up mono">▲ LIVE</span></div>
+  <div class="stat"><b>500</b><span class="mono">Applications scored</span><span class="up mono">▲ +12 TODAY</span></div>
+  <div class="stat"><b>300</b><span class="mono">Interviews booked</span><span class="up mono">▲ 0 EMAILS</span></div>
+  <div class="stat"><b>48h</b><span class="mono">Median time-to-offer</span><span class="up mono">▲ -6h WK/WK</span></div>
+</section>
+
+<!-- Incoming signals -->
+<section class="signals container">
+  <div class="sec-head">
+    <h2 class="sec-title">Incoming signals — open roles</h2>
+    <a routerLink="/jobs" class="link-all mono">ALL ROLES <app-icon name="arrow-right" [size]="14" /></a>
+  </div>
+  @if (loading()) {
+    <div class="loading mono">SCANNING FREQUENCIES…</div>
+  } @else {
+    <div class="signal-grid">
+      @for (job of featuredJobs(); track job.id) {
+        <a
+          [routerLink]="['/jobs', job.id]"
+          class="signal-card"
+          [class.hot]="activeBlip()?.job?.id === job.id"
+          (mouseenter)="hover(job)"
+          (mouseleave)="hover(null)"
+        >
+          <span class="pulse-dot"></span>
+          <div class="dept mono">{{ job.department }} · {{ job.location }}</div>
+          <h3>{{ job.title }}</h3>
+          <div class="meta">Full-time · {{ confidence(job) }}% fill confidence</div>
+          <div class="pay mono">${{ job.salaryMin | number }} – ${{ job.salaryMax | number }}</div>
+        </a>
+      }
     </div>
-    <div class="process-steps">
-      <div class="step-card">
-        <span class="step-num">01</span>
-        <h4>Discover & apply</h4>
-        <p>Browse active opportunities and submit your profile or resume seamlessly.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-num">02</span>
-        <h4>Review & match</h4>
-        <p>The hiring team evaluates skills, experience and position alignment.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-num">03</span>
-        <h4>Interview</h4>
-        <p>Technical and HR conversations with calendar-ready meeting links.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-num">04</span>
-        <h4>Offer & onboard</h4>
-        <p>Formal offer letters and a clean handover to the new team.</p>
-      </div>
+  }
+</section>
+
+<!-- Transmission: the hiring floor -->
+<section class="transmission container">
+  <div class="transmission__media">
+    <img src="img/hiring-floor.jpg" alt="The hiring floor at RecruitPro" />
+    <div class="frame-tag mono">FEED 01 — HIRING_FLOOR · SIGNAL LOCKED</div>
+  </div>
+  <div class="transmission__copy">
+    <h2 class="sec-title">The board never sleeps</h2>
+    <p>
+      Every resume is parsed, deduplicated and scored the moment it arrives. Recruiters watch
+      one live board instead of twelve inboxes — weak matches fade to static, strong ones
+      light up and get a same-day answer.
+    </p>
+    <ul class="check-list">
+      <li><app-icon name="check" [size]="16" /> Instant scoring on every application</li>
+      <li><app-icon name="check" [size]="16" /> Interviews scheduled without email chains</li>
+      <li><app-icon name="check" [size]="16" /> Offers out in a median 48 hours</li>
+    </ul>
+    <a routerLink="/about" class="btn-ui-dark">How the signal works <app-icon name="arrow-right" [size]="15" /></a>
+  </div>
+</section>
+
+<!-- Recently acquired -->
+<section class="hired container">
+  <h2 class="sec-title">Recently acquired — new hires</h2>
+  <div class="hired-grid">
+    <div class="hired-card">
+      <img src="img/hired-1.jpg" alt="Sarah Mansour" />
+      <div class="tag mono"><b>HIRED</b> · HEAD OF HR · 11 DAYS</div>
+    </div>
+    <div class="hired-card">
+      <img src="img/hired-2.jpg" alt="Omar Adel" />
+      <div class="tag mono"><b>HIRED</b> · STAFF ENGINEER · 6 DAYS</div>
+    </div>
+    <div class="hired-card">
+      <img src="img/hired-3.jpg" alt="Laila Hassan" />
+      <div class="tag mono"><b>HIRED</b> · UX LEAD · 9 DAYS</div>
     </div>
   </div>
 </section>
 
-<!-- Call To Action -->
-<section class="section cta-section">
-  <div class="container text-center">
-    <h2>Ready to run hiring like a system?</h2>
-    <p class="cta-desc">Create a candidate account, or sign in with a demo role and explore every portal.</p>
-    <div class="d-flex justify-content-center gap-3">
-      <a routerLink="/register" class="btn-cta-primary">Create candidate account</a>
-      <a routerLink="/login" class="btn-cta-secondary">Sign in to the demo</a>
+<!-- CTA band -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>READY TO<br /><span class="stroke-lime">TRANSMIT?</span></h2>
+    <div class="cta-band__actions">
+      <a routerLink="/register" class="btn-ui-primary">Create Candidate Profile</a>
+      <a routerLink="/login" class="btn-ui-ghost-light">Sign In</a>
     </div>
   </div>
 </section>

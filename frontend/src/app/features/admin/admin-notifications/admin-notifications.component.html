@@ -4,7 +4,7 @@
   subtitle="Send system-wide broadcast announcements to candidates, recruiters, and HR managers."
 >
   <button class="btn-ui-primary" (click)="showBroadcastModal.set(true)">
-    📢 Send Broadcast Announcement
+    <app-icon name="bell" [size]="16" /> Send Broadcast Announcement
   </button>
 </app-page-header>
 
@@ -54,7 +54,7 @@
     <div class="col-md-6">
       <div class="card-ui notif-card">
         <div class="d-flex justify-content-between align-items-start mb-2">
-          <h3 class="notif-title">📢 {{ n.title }}</h3>
+          <h3 class="notif-title"><app-icon name="bell" [size]="16" /> {{ n.title }}</h3>
           <app-badge [text]="n.targetRole" colorClass="badge-blue"></app-badge>
         </div>
         <p class="notif-msg">{{ n.message }}</p>

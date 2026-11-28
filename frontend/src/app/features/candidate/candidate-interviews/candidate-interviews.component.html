@@ -9,7 +9,7 @@
 } @else {
   @if (interviews().length === 0) {
     <div class="card-ui text-center py-5">
-      <div style="font-size:3rem;margin-bottom:16px">📅</div>
+      <div style="color:var(--lime-ink);margin-bottom:16px"><app-icon name="calendar" [size]="44" /></div>
       <h3>No Interviews Scheduled</h3>
       <p class="text-muted">Your interview invitations will appear here once scheduled by HR.</p>
     </div>
@@ -30,15 +30,15 @@
 
             <div class="interview-meta">
               <div class="meta-item">
-                <span class="meta-icon">📅</span>
+                <span class="meta-icon"><app-icon name="calendar" [size]="16" /></span>
                 <span>{{ interview.startTime | date:'fullDate' }}</span>
               </div>
               <div class="meta-item">
-                <span class="meta-icon">🕐</span>
+                <span class="meta-icon"><app-icon name="clock" [size]="16" /></span>
                 <span>{{ interview.startTime | date:'shortTime' }} — {{ interview.endTime | date:'shortTime' }}</span>
               </div>
               <div class="meta-item">
-                <span class="meta-icon">📍</span>
+                <span class="meta-icon"><app-icon name="map-pin" [size]="16" /></span>
                 <span>{{ interview.location || 'Online via Google Meet' }}</span>
               </div>
             </div>
@@ -47,7 +47,7 @@
 
             @if (interview.meetingLink) {
               <a [href]="interview.meetingLink" target="_blank" class="btn-ui-primary mt-3 w-100 justify-content-center">
-                🎥 Join Google Meet Session
+                <app-icon name="play" [size]="16" /> Join Google Meet Session
               </a>
             }
 

@@ -5,11 +5,12 @@ import { Application, PaginatedResult } from '../../../core/models/api.models';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { DatePipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-candidate-applications',
   standalone: true,
-  imports: [RouterLink, PageHeaderComponent, BadgeComponent, DatePipe],
+  imports: [RouterLink, PageHeaderComponent, BadgeComponent, DatePipe, IconComponent ],
   templateUrl: './candidate-applications.component.html',
   styleUrl: './candidate-applications.component.scss'
 })

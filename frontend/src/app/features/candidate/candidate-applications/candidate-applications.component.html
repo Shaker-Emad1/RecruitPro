@@ -9,7 +9,7 @@
 } @else {
   @if (applications().length === 0) {
     <div class="card-ui text-center py-5">
-      <div style="font-size:3rem;margin-bottom:16px">📭</div>
+      <div style="color:var(--lime-ink);margin-bottom:16px"><app-icon name="mail" [size]="44" /></div>
       <h3>No Applications Yet</h3>
       <p class="text-muted">Start by browsing and applying to active job openings.</p>
       <a routerLink="/jobs" class="btn-ui-primary mt-3">Explore Open Roles</a>

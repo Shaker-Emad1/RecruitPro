@@ -19,7 +19,7 @@
     <div class="benefits-grid">
       @for (b of benefits; track b.title) {
         <div class="benefit-card">
-          <div class="icon">🌟</div>
+          <div class="icon"><app-icon name="star" [size]="16" /></div>
           <h3>{{ b.title }}</h3>
           <p>{{ b.desc }}</p>
         </div>

@@ -60,7 +60,7 @@
       <div class="interviews-mini-list">
         @for (i of interviews(); track i.id) {
           <div class="interview-mini-card">
-            <div class="time-tag">📅 {{ i.startTime | date:'shortTime' }}</div>
+            <div class="time-tag"><app-icon name="calendar" [size]="16" /> {{ i.startTime | date:'shortTime' }}</div>
             <h4 class="mini-title">Technical Evaluation</h4>
             <p class="mini-meta">{{ i.startTime | date:'mediumDate' }}</p>
             @if (i.meetingLink) {

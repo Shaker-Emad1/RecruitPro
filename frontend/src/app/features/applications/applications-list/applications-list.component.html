@@ -5,10 +5,10 @@
 >
   <div class="d-flex gap-2">
     <button class="btn-ui-outline" [class.active-mode]="viewMode === 'pipeline'" (click)="viewMode = 'pipeline'">
-      📊 Pipeline View
+      <app-icon name="bar-chart" [size]="16" /> Pipeline View
     </button>
     <button class="btn-ui-outline" [class.active-mode]="viewMode === 'table'" (click)="viewMode = 'table'">
-      📋 Table View
+      <app-icon name="layers" [size]="16" /> Table View
     </button>
   </div>
 </app-page-header>
@@ -52,7 +52,7 @@
                 </div>
                 <p class="job-ref">Applied for Job #{{ app.jobId.substring(0, 8) }}</p>
                 <div class="card-meta">
-                  <span>📅 {{ app.createdAt | date:'shortDate' }}</span>
+                  <span><app-icon name="calendar" [size]="16" /> {{ app.createdAt | date:'shortDate' }}</span>
                 </div>
 
                 <!-- Stage Move Actions -->

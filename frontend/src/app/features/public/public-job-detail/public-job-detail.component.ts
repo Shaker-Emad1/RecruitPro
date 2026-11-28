@@ -3,11 +3,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
 import { JobService } from '../../../core/services/job.service';
 import { Job } from '../../../core/models/api.models';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-public-job-detail',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, DatePipe, DecimalPipe],
+  imports: [RouterLink, CurrencyPipe, DatePipe, DecimalPipe, IconComponent ],
   templateUrl: './public-job-detail.component.html',
   styleUrl: './public-job-detail.component.scss'
 })

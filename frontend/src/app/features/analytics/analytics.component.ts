@@ -3,11 +3,12 @@ import { DecimalPipe } from '@angular/common';
 import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
 import { StatCardComponent } from '../../shared/components/stat-card/stat-card.component';
 import { AnalyticsService, ExtendedAnalytics, HiringFunnel } from '../../core/services/analytics.service';
+import { IconComponent } from '../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-analytics',
   standalone: true,
-  imports: [PageHeaderComponent, StatCardComponent, DecimalPipe],
+  imports: [PageHeaderComponent, StatCardComponent, DecimalPipe, IconComponent ],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.scss'
 })

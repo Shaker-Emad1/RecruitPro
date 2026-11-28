@@ -7,11 +7,12 @@ import { Job, PaginatedResult } from '../../../core/models/api.models';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-jobs-list',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, PageHeaderComponent, BadgeComponent, CurrencyPipe],
+  imports: [RouterLink, ReactiveFormsModule, PageHeaderComponent, BadgeComponent, CurrencyPipe, IconComponent ],
   templateUrl: './jobs-list.component.html',
   styleUrl: './jobs-list.component.scss',
 })

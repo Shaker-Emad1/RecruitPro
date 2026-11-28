@@ -1,11 +1,13 @@
 import { Component, input, output } from '@angular/core';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-empty-state',
   standalone: true,
+  imports: [IconComponent],
   template: `
     <div class="empty-state-card card-ui text-center py-5">
-      <div class="empty-icon">{{ icon() }}</div>
+      <div class="empty-icon"><app-icon [name]="icon()" [size]="44" [stroke]="1.4" /></div>
       <h3 class="empty-title">{{ title() }}</h3>
       <p class="empty-description">{{ description() }}</p>
       @if (actionLabel()) {
@@ -22,13 +24,13 @@ import { Component, input, output } from '@angular/core';
       align-items: center;
       justify-content: center;
     }
-    .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-icon { color: var(--lime-ink); margin-bottom: 14px; }
     .empty-title { font-size: 1.2rem; font-weight: 800; margin: 0 0 6px; }
     .empty-description { font-size: 0.875rem; color: var(--muted); max-width: 420px; margin: 0 auto; }
   `]
 })
 export class EmptyStateComponent {
-  icon = input<string>('📭');
+  icon = input<string>('mail');
   title = input.required<string>();
   description = input.required<string>();
   actionLabel = input<string>();

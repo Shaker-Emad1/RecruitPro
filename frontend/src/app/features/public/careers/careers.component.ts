@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-careers',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, IconComponent ],
   templateUrl: './careers.component.html',
   styleUrl: './careers.component.scss'
 })

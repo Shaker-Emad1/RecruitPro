@@ -18,7 +18,7 @@
 
   <!-- ── KPI Executive Summary Row ───────────────────────────────────── -->
   <section class="section-block mb-4">
-    <h2 class="section-title mb-3">📊 Executive Summary</h2>
+    <h2 class="section-title mb-3"><app-icon name="bar-chart" [size]="16" /> Executive Summary</h2>
     <div class="row g-3">
       <div class="col-md-3 col-6">
         <app-stat-card label="Total Jobs" [value]="data.totalJobs"></app-stat-card>
@@ -49,7 +49,7 @@
 
   <!-- ── HR Metrics Row ──────────────────────────────────────────────── -->
   <section class="section-block mb-4">
-    <h2 class="section-title mb-3">📈 HR Performance Metrics</h2>
+    <h2 class="section-title mb-3"><app-icon name="trending-up" [size]="16" /> HR Performance Metrics</h2>
     <div class="row g-4">
       <div class="col-md-4">
         <div class="card-ui metric-card">
@@ -89,7 +89,7 @@
   <!-- ── Hiring Funnel ───────────────────────────────────────────────── -->
   @if (funnel(); as f) {
     <section class="section-block mb-4">
-      <h2 class="section-title mb-3">🔽 Recruitment Hiring Funnel</h2>
+      <h2 class="section-title mb-3"><app-icon name="chevron-down" [size]="16" /> Recruitment Hiring Funnel</h2>
       <div class="card-ui funnel-container">
         @for (stage of [
           { label: 'Applications', value: f.applications, color: '#2563eb' },
@@ -120,7 +120,7 @@
 
   <!-- ── Monthly Trends Bar Chart ─────────────────────────────────────── -->
   <section class="section-block mb-4">
-    <h2 class="section-title mb-3">📅 Monthly Hiring Trend (Last 12 Months)</h2>
+    <h2 class="section-title mb-3"><app-icon name="calendar" [size]="16" /> Monthly Hiring Trend (Last 12 Months)</h2>
     <div class="card-ui">
       <div class="chart-bar-container">
         @for (trend of data.monthlyTrends; track trend.month) {
@@ -145,7 +145,7 @@
   <!-- ── Department Breakdown ─────────────────────────────────────────── -->
   @if (data.departmentBreakdown.length > 0) {
     <section class="section-block mb-4">
-      <h2 class="section-title mb-3">🏢 Hiring Activity by Department</h2>
+      <h2 class="section-title mb-3"><app-icon name="building" [size]="16" /> Hiring Activity by Department</h2>
       <div class="card-ui p-0 overflow-hidden">
         <table class="table-ui">
           <thead>

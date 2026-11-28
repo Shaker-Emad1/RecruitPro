@@ -6,11 +6,12 @@ import { Interview, PaginatedResult } from '../../../core/models/api.models';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { DatePipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-interviews-list',
   standalone: true,
-  imports: [ReactiveFormsModule, PageHeaderComponent, BadgeComponent, DatePipe],
+  imports: [ReactiveFormsModule, PageHeaderComponent, BadgeComponent, DatePipe, IconComponent ],
   templateUrl: './interviews-list.component.html',
   styleUrl: './interviews-list.component.scss',
 })

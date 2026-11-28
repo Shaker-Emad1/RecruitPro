@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { IconComponent } from '../../shared/components/icon/icon.component';
 
 interface NavItem {
   path: string;
@@ -11,7 +12,7 @@ interface NavItem {
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, IconComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.scss',
 })
@@ -20,13 +21,13 @@ export class AdminLayoutComponent {
   sidebarOpen = signal(false);
 
   readonly navItems: NavItem[] = [
-    { path: '/admin/dashboard',     label: 'Admin Control Center', icon: '⚡' },
-    { path: '/admin/users',         label: 'User Directory',       icon: '👥' },
-    { path: '/admin/roles',         label: 'Roles & Matrix',       icon: '🔐' },
-    { path: '/admin/settings',      label: 'System Config',        icon: '⚙️' },
-    { path: '/admin/templates',     label: 'Email Templates',      icon: '✉️' },
-    { path: '/admin/audit',         label: 'Audit Logs',           icon: '📜' },
-    { path: '/admin/notifications', label: 'Broadcast Center',     icon: '🔔' },
+    { path: '/admin/dashboard',     label: 'Admin Control Center', icon: 'zap' },
+    { path: '/admin/users',         label: 'User Directory',       icon: 'users' },
+    { path: '/admin/roles',         label: 'Roles & Matrix',       icon: 'lock' },
+    { path: '/admin/settings',      label: 'System Config',        icon: 'settings' },
+    { path: '/admin/templates',     label: 'Email Templates',      icon: 'mail' },
+    { path: '/admin/audit',         label: 'Audit Logs',           icon: 'file-text' },
+    { path: '/admin/notifications', label: 'Broadcast Center',     icon: 'bell' },
   ];
 
   toggleSidebar(): void {

@@ -7,11 +7,12 @@ import { StatCardComponent } from '../../../shared/components/stat-card/stat-car
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { DatePipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-candidate-dashboard',
   standalone: true,
-  imports: [RouterLink, StatCardComponent, PageHeaderComponent, BadgeComponent, DatePipe],
+  imports: [RouterLink, StatCardComponent, PageHeaderComponent, BadgeComponent, DatePipe, IconComponent ],
   templateUrl: './candidate-dashboard.component.html',
   styleUrl: './candidate-dashboard.component.scss'
 })

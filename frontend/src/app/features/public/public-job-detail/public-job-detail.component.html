@@ -17,10 +17,10 @@
           <span class="dept-badge">{{ j.department }}</span>
           <h1 class="job-detail-title">{{ j.title }}</h1>
           <div class="job-meta-pills">
-            <span>📍 {{ j.location }}</span>
-            <span>🎓 {{ j.minimumExperience }}+ Years Experience</span>
-            <span>💰 {{ j.salaryMin | currency:'USD':'symbol':'1.0-0' }} - {{ j.salaryMax | currency:'USD':'symbol':'1.0-0' }}</span>
-            <span>📅 Posted {{ j.createdAt | date:'mediumDate' }}</span>
+            <span><app-icon name="map-pin" [size]="16" /> {{ j.location }}</span>
+            <span><app-icon name="award" [size]="16" /> {{ j.minimumExperience }}+ Years Experience</span>
+            <span><app-icon name="dollar" [size]="16" /> {{ j.salaryMin | currency:'USD':'symbol':'1.0-0' }} - {{ j.salaryMax | currency:'USD':'symbol':'1.0-0' }}</span>
+            <span><app-icon name="calendar" [size]="16" /> Posted {{ j.createdAt | date:'mediumDate' }}</span>
           </div>
         </div>
         <a routerLink="/register" class="btn-apply-hero">Apply Now →</a>

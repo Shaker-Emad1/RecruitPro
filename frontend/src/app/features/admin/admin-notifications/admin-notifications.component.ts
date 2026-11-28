@@ -4,6 +4,7 @@ import { PageHeaderComponent } from '../../../shared/components/page-header/page
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { ToastService } from '../../../core/services/toast.service';
 import { DatePipe } from '@angular/common';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
 
 export interface SystemNotificationItem {
   id: string;
@@ -16,7 +17,7 @@ export interface SystemNotificationItem {
 @Component({
   selector: 'app-admin-notifications',
   standalone: true,
-  imports: [ReactiveFormsModule, PageHeaderComponent, BadgeComponent, DatePipe],
+  imports: [ReactiveFormsModule, PageHeaderComponent, BadgeComponent, DatePipe, IconComponent ],
   templateUrl: './admin-notifications.component.html',
   styleUrl: './admin-notifications.component.scss'
 })

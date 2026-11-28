@@ -1,107 +1,45 @@
-.candidate-shell {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--background);
-}
+.candidate-shell { min-height: 100vh; display: flex; flex-direction: column; }
 
 .topbar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 72px;
-  display: flex;
-  align-items: center;
+  background: var(--ink);
+  background-image: linear-gradient(90deg, rgba(200,255,46,0.04) 1px, transparent 1px);
+  background-size: 56px 100%;
+  position: sticky; top: 0; z-index: 100;
+}
 
-  &-inner {
-    width: 100%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.topbar-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 28px;
+  height: 66px; display: flex; align-items: center; gap: 34px;
+}
+
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0;
+  .brand-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--lime); color: var(--ink); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 18px rgba(200,255,46,.35); }
+  .brand-name { font-family: var(--font-display); font-size: .95rem; text-transform: uppercase; color: #fff; }
+  .lime { color: var(--lime); }
+  .brand-tag { font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase; color: #7c8ea3; margin-left: 10px; border: 1px solid rgba(255,255,255,.18); padding: 3px 7px; border-radius: 4px; }
+}
+
+.candidate-nav { display: flex; align-items: center; gap: 4px; flex: 1;
+  a { color: #93a4b8; text-decoration: none; font-size: .85rem; font-weight: 500; padding: 8px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 7px;
+    &:hover { color: #fff; background: rgba(200,255,46,.07); }
+    &.active { color: var(--lime); background: rgba(200,255,46,.12); }
+  }
+  .nav-jobs-btn { border: 1px solid rgba(200,255,46,.4); color: var(--lime); margin-left: 8px;
+    &:hover { background: var(--lime); color: var(--ink); }
   }
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: var(--foreground);
-
-  &-icon { font-size: 1.4rem; }
-  &-name { font-weight: 500; strong { font-weight: 800; color: var(--primary); } }
-}
-
-.candidate-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  a {
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--muted);
-    padding: 6px 12px;
-    border-radius: 10px;
-
-    &:hover, &.active {
-      color: var(--foreground);
-      background: var(--surface-muted);
-    }
-  }
-
-  .nav-jobs-btn {
-    color: var(--primary);
-    font-weight: 700;
-    &:hover { background: rgba(37, 99, 235, 0.1); }
+.user-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+  .user-name { color: #fff; font-size: .84rem; font-weight: 600; display: block; text-align: right; }
+  .user-role { font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase; color: #7c8ea3; display: block; text-align: right; margin-top: 2px; }
+  .btn-logout { display: inline-flex; align-items: center; gap: 7px; background: transparent; border: 1px solid rgba(255,255,255,.18); color: #93a4b8; font-family: var(--font-mono); font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; padding: 8px 13px; border-radius: 6px; cursor: pointer;
+    &:hover { border-color: var(--lime); color: var(--lime); }
   }
 }
 
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.candidate-main { flex: 1; }
 
-.btn-theme {
-  background: var(--surface-muted);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.user-profile {
-  display: flex;
-  flex-direction: column;
-
-  .user-name { font-size: 0.84rem; font-weight: 700; color: var(--foreground); }
-  .user-role { font-size: 0.7rem; color: var(--muted); font-weight: 600; }
-}
-
-.btn-logout {
-  background: var(--danger-bg);
-  color: var(--danger);
-  border: 1px solid rgba(185, 28, 28, 0.2);
-  border-radius: 10px;
-  padding: 6px 14px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  cursor: pointer;
-  &:hover { background: #fee2e2; }
-}
-
-.candidate-main {
-  flex: 1;
+@media (max-width: 991px) {
+  .topbar-inner { flex-wrap: wrap; height: auto; padding: 14px 20px; gap: 14px; }
+  .candidate-nav { order: 3; width: 100%; overflow-x: auto; }
 }

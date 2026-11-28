@@ -1,10 +1,9 @@
 <div class="candidate-shell">
-  <!-- Top Bar -->
   <header class="topbar">
     <div class="topbar-inner">
       <a routerLink="/candidate/dashboard" class="brand">
-        <span class="brand-icon">⚡</span>
-        <span class="brand-name">RecruitPro <strong>Candidate</strong></span>
+        <span class="brand-icon"><app-icon name="radar" [size]="20" [stroke]="2.2" /></span>
+        <span class="brand-name">RecruitPro<span class="lime">_</span><span class="brand-tag mono">Candidate</span></span>
       </a>
 
       <nav class="candidate-nav">
@@ -13,23 +12,19 @@
         <a routerLink="/candidate/interviews" routerLinkActive="active">Interviews</a>
         <a routerLink="/candidate/profile" routerLinkActive="active">Profile & Resume</a>
         <a routerLink="/candidate/settings" routerLinkActive="active">Settings</a>
-        <a routerLink="/jobs" class="nav-jobs-btn">Explore Jobs 🔍</a>
+        <a routerLink="/jobs" class="nav-jobs-btn"><app-icon name="search" [size]="15" /> Explore Jobs</a>
       </nav>
 
       <div class="user-actions">
-        <button class="btn-theme" (click)="toggleTheme()" [title]="isDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
-          {{ isDarkMode() ? '☀️' : '🌙' }}
-        </button>
         <div class="user-profile">
-          <span class="user-name">{{ auth.userDisplayName() || 'Candidate User' }}</span>
-          <span class="user-role">Candidate</span>
+          <span class="user-name">{{ auth.userDisplayName() || 'Candidate' }}</span>
+          <span class="user-role mono">Candidate</span>
         </div>
-        <button class="btn-logout" (click)="logout()">Logout</button>
+        <button class="btn-logout" (click)="logout()"><app-icon name="logout" [size]="15" /> Logout</button>
       </div>
     </div>
   </header>
 
-  <!-- Content Outlet -->
   <main class="candidate-main">
     <div class="container py-4">
       <router-outlet></router-outlet>
