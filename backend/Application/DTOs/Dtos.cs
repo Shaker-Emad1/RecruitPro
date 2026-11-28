@@ -8,7 +8,7 @@ public record UserDto(Guid Id, string FirstName, string LastName, string Email, 
 public record CandidateDto(
     Guid Id, string FullName, string Email, string Phone, string Location,
     int YearsOfExperience, string Education, string Certifications,
-    string ResumeFileName, string LinkedInUrl, string GitHubUrl,
+    string ResumeFileName, string ResumeFilePath, string LinkedInUrl, string GitHubUrl,
     string Status, string Classification, int AiScore, string AiSummary,
     string AiRecommendations, string AiStrengths, string AiWeaknesses,
     string AiInterviewQuestions, string AiHiringRecommendation,

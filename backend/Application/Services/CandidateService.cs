@@ -222,6 +222,7 @@ public class CandidateService : ICandidateService
             candidate.Education,
             candidate.Certifications,
             candidate.ResumeFileName,
+            candidate.ResumeFilePath,
             candidate.LinkedInUrl,
             candidate.GitHubUrl,
             candidate.Status.ToString(),
